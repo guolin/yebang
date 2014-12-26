@@ -1,0 +1,68 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">历史关注度排行</h1>
+</div>
+
+<div class="row wrapper ">
+
+  <div class="form-group col-xs-12">
+    <label class="control-label">日期选择</label>
+    <div ng-controller="DatepickerDemoCtrl">
+      <div class="input-group">
+        <input type="text" class="form-control" show-weeks="false" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+        <span class="input-group-btn">
+
+        <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+
+      </span>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>
+<div class="wrapper-md">
+    <tabset class="tab-container  m-b-none">
+
+      <tab>
+        <tab-heading>央视</tab-heading>
+
+        <div class="table-responsive b-none">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>名称</th>
+                <th>市场占有率</th>
+                <th>收视率</th>
+              </tr>
+            </thead>
+            <tbody ng-init="items = [1,2,3,4,5,6,7,8,9,10]">
+              <tr ng-repeat="item in items">
+                <td>{{item}}</td>
+                <td><a ui-sref="app.channelDetail({id:item})">湖南卫视</a></td>
+                <td>12.3425%</td>
+                <td>1.3425%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+
+      </tab>
+
+      <tab>
+        <tab-heading>卫视</tab-heading>
+        I've got an HTML heading, and a select callback. Pretty cool!
+      </tab>
+      <tab>
+        <tab-heading>地面频道</tab-heading>
+        I've got an HTML heading, and a select callback. Pretty cool!
+      </tab>
+      <tab>
+        <tab-heading>其他</tab-heading>
+        I've got an HTML heading, and a select callback. Pretty cool!
+      </tab>
+    </tabset>
+
+</div>

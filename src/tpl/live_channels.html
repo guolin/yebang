@@ -1,0 +1,52 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">实时关注度</h1>
+</div>
+
+<div class="wrapper-md">
+  <div class="col-lg-9">
+  <tabset class="tab-container m-b-none">
+
+    <tab>
+      <tab-heading>央视</tab-heading>
+      <div class="table-responsive table-striped b-none m-r-n-xs m-l-n-xs">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>名称</th>
+              <th>收视率</th>
+            </tr>
+          </thead>
+          <tbody ng-init="items = [1,2,3,4,5,6,7,8,9,10]" >
+            <tr ng-repeat="item in items">
+              <td>{{item}}</td>
+              <td>
+                <a ui-sref="app.liveChannelDetail({id:item})"><span>湖南电视台</span></a><br class="visable-xs" />
+                <small>爸爸去哪儿 第二季</small>
+              </td>
+              <td>
+                2.1242% <br />
+                <div ng-init="data1=[ 16,15,15,14,17,18,16,15,16,11 ]" ui-jq="sparkline" ui-options="{{data1}}, {type:'bar', height:19, barWidth:4, barSpacing:2, barColor:'{{app.color.success}}'}" class="sparkline inline">loading...</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </tab>
+
+    <tab>
+      <tab-heading>卫视</tab-heading>
+      I've got an HTML heading, and a select callback. Pretty cool!
+    </tab>
+    <tab>
+      <tab-heading>地面频道</tab-heading>
+      I've got an HTML heading, and a select callback. Pretty cool!
+    </tab>
+    <tab>
+      <tab-heading>其他</tab-heading>
+      I've got an HTML heading, and a select callback. Pretty cool!
+    </tab>
+  </tabset>
+</div>
+</div>

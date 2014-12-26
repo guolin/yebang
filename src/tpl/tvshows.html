@@ -1,0 +1,49 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">节目排行榜</h1>
+</div>
+<div class="row wrapper ">
+  <div class="form-group col-xs-6">
+    <label class="control-label">日期选择</label>
+    <div ng-controller="DatepickerDemoCtrl">
+      <div class="input-group">
+        <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+        <span class="input-group-btn">
+        <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="form-group col-xs-6">
+    <label class="control-label">选择节目类型</label>
+    <div>
+      <select ui-jq="chosen" class="w-full">
+        <option value="AK">电影</option>
+        <option value="HI">电视剧</option>
+        <option value="HI">综艺</option>
+        <option value="HI">纪录片</option>
+      </select>
+    </div>
+  </div>
+</div>
+<div class="wrapper-md">
+  <div class="table-responsive">
+    <table class="table table-striped b-t b-light">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>名称</th>
+          <th>类型</th>
+          <th>收视率</th>
+        </tr>
+      </thead>
+      <tbody ng-init="items = [1,2,3,4,5,6,7,8,9,10]">
+        <tr ng-repeat="item in items">
+          <td>{{item}}</td>
+          <td><a ui-sref="app.tvshowDetail({id:item})">奔跑吧兄弟</a></td>
+          <td>综艺</td>
+          <td>1.5325%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

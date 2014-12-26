@@ -1,0 +1,106 @@
+<div class="hbox hbox-auto-xs hbox-auto-sm" ng-init="
+    app.settings.asideFolded = false;
+    app.settings.asideDock = false;
+  ">
+  <!-- main -->
+  <div class="col">
+    <!-- main header -->
+    <div class="bg-light lter b-b wrapper-md">
+      <div class="row">
+        <div class="col-sm-6 col-xs-12">
+          <h1 class="m-n font-thin h3 text-black">数据首页</h1>
+          <small class="text-muted">基于全国数千万用户的终端用户数据</small>
+        </div>
+      </div>
+    </div>
+    <!-- / main header -->
+    <div class="wrapper-md" >
+      <!-- 整体关注度 -->
+      <div class="row" ng-controller="RatingCtrl">
+        <div class="col-md-12">
+          <div class="panel wrapper" ng-init="showSpline=true">
+            <h4 class="font-thin m-t-none m-b text-muted">最近24小时整体关注度</h4>
+            <div class="m-b-lg bg-light dk" ui-echarts option="option" style="height: 348px;"></div>
+          </div>
+        </div>
+      </div>
+
+      
+      <!-- / 整体关注度 -->
+
+      <!-- tasks -->
+      <div class="row push-left">
+        <div class="col-md-12">
+          <div class="row row-sm text-center">
+            <div class="col-xs-6">
+              <div class="panel padder-v item">
+                <div class="h1 text-info font-thin h2">42.42%</div>
+                <span class="text-muted text-xs">实时开机率</span>
+                <div class="top text-right w-full">
+                  <i class="fa fa-caret-down text-warning m-r-sm"></i>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-6">
+              <a href class="block panel padder-v bg-primary item">
+                <span class="text-white font-thin h2 block">32.32%</span>
+                <span class="text-muted text-xs">实时关注度</span>
+                <span class="top text-right w-full">
+                  <i class="fa fa-caret-up text-warning m-r-sm"></i>
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6">
+          <h4>关注度排行</h4>
+          <div class="panel table-responsive table-striped b-none">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>名称</th>
+              <th>收视率</th>
+            </tr>
+          </thead>
+          <tbody ng-init="items = [1,2,3,4,5,6,7,8]" >
+            <tr ng-repeat="item in items">
+              <td>{{item}}</td>
+              <td>
+                <a ui-sref="app.liveChannelDetail({id:item})"><span>湖南电视台</span></a><br class="visable-xs" />
+                <small>爸爸去哪儿 第二季</small>
+              </td>
+              <td>
+                2.1242% <br />
+                <div ng-init="data1=[ 16,15,15,14,17,18,16,15,16,11 ]" ui-jq="sparkline" ui-options="{{data1}}, {type:'bar', height:19, barWidth:4, barSpacing:2, barColor:'{{app.color.success}}'}" class="sparkline inline">loading...</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+      </div>
+
+        <div class="col-md-6" >
+          <h4 >实时广告</h4>
+          <div ng-init="items = [1,2,3,4,5]" class="list-group list-group-lg list-group-sp" >
+            <a herf class="list-group-item clearfix" ng-repeat="item in items">
+              <span class="pull-left thumb-md m-r">
+                <img src="img/a4.jpg" alt="...">
+                <i class="on b-white right"></i>
+              </span>
+              <span class="clear">
+                <span>猴菇饼干</span>
+                <small class="text-muted clear text-ellipsis">每天吃一点儿，养胃。</small>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+      </div>
+      <!-- / tasks -->
+    </div>
+  </div>
+  <!-- / main -->
+</div>

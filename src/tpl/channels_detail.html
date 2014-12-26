@@ -1,0 +1,107 @@
+<div class="hbox hbox-auto-xs hbox-auto-sm" ng-init="
+  app.settings.asideFolded = false;
+  app.settings.asideDock = false;
+  ">
+  <!-- main -->
+  <div class="col">
+    <!-- main header -->
+    <div class="bg-light lter b-b wrapper-md">
+      <div class="row">
+        <div class="col-sm-6 col-xs-12">
+          <h1 class="m-n font-thin h3 text-black">湖南电视台 关注度</h1>
+          <small class="text-muted"></small>
+        </div>
+      </div>
+    </div>
+    <!-- / main header -->
+    <!-- stats -->
+    <div class="wrapper-md" ng-controller="RatingCtrl">
+      <div class="row">
+        <!-- 对比 -->
+        <div class="row wrapper ">
+          <div class="form-group col-xs-6">
+            <label class="control-label">日期选择</label>
+            <div>
+              <select ui-jq="chosen" class="w-full">
+                <option value="AK">昨天</option>
+                <option value="HI">前天</option>
+                <option value="HI">最近7天</option>
+                <option value="HI">最近30天</option>
+                <option value="HI">自定义</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group col-xs-6">
+            <label class="control-label">加入对比电视台</label>
+            <div>
+              <select ui-jq="chosen" class="w-full">
+                <option value="AK">湖北卫视</option>
+                <option value="HI">浙江卫视</option>
+                <option value="HI">广西卫视</option>
+                <option value="HI">兵团卫视</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-12">
+          <div class="panel wrapper" ng-init="showSpline=true">
+            <h4 class="font-thin m-t-none m-b text-muted">最近30分钟关注度</h4>
+            <div class="m-b-lg bg-light dk" ui-echarts option="option" style="height: 348px;"></div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="row row-sm text-center">
+            <div class="col-xs-6">
+              <div class="panel padder-v item">
+                <div class="h1 text-info font-thin h1">12.2342%</div>
+                <span class="text-muted text-xs">市场份额</span>
+              </div>
+            </div>
+            <div class="col-xs-6">
+              <a href class="block panel padder-v bg-primary item">
+                <span class="text-white font-thin h1 block">1.3123%</span>
+                <span class="text-muted text-xs">关注度</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- / stats -->
+    </div>
+    <!-- 数据列表 -->
+    <div class="wrapper-md">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          电视节目
+        </div>
+        <div class="table-responsive">
+          <table ui-jq="dataTable" ui-options="{
+            sAjaxSource: 'vendor/jquery/datatables/datatable.json',
+            aoColumns: [
+            { mData: 'engine' },
+            { mData: 'browser' },
+            { mData: 'platform' },
+            { mData: 'version' },
+            { mData: 'grade' }
+            ]
+            }" class="table table-striped m-b-none">
+            <thead>
+              <tr>
+                <th  style="width:20%">engine</th>
+                <th  style="width:25%">名称</th>
+                <th  style="width:25%">播出时间</th>
+                <th  style="width:15%">关注度</th>
+                <th  style="width:15%">CSS</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- / 数据列表 -->
+  </div>
+  <!-- / main -->
+</div>
