@@ -6,5 +6,6 @@ node_modules/
 public/lib
 app/tests/coverage/
 dist/
+bower_components/
 .bower-*/
 .idea/

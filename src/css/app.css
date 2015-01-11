@@ -1477,7 +1477,7 @@ html {
 .btn {
   font-weight: 500;
   border-radius: 2px;
-  outline: 0!important;
+  outline: 0 !important;
 }
 .btn-link {
   color: #58666e;
@@ -4095,6 +4095,10 @@ a.text-#000000:hover {
   .padder-md {
     padding-left: 15px;
     padding-right: 15px;
+  }
+
+  .no-padder-xs {
+    padding: 0px;
   }
 }
 .butterbar {

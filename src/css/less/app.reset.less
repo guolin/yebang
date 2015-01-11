@@ -1,7 +1,8 @@
 // reset
 html {
-  background-color: @body-bg;  
+  background-color: @body-bg;
 }
+
 body {
   font-family: @font-family-base;
   font-size: @font-size-base;
@@ -15,7 +16,7 @@ body {
   outline: 0 !important;
 }
 
-.h1, .h2, .h3, .h4, .h5, .h6{
+.h1, .h2, .h3, .h4, .h5, .h6 {
   margin: 0;
 }
 
@@ -27,143 +28,165 @@ a {
   text-decoration: none;
   cursor: pointer;
 }
+
 a:hover,
 a:focus {
   color: @link-hover-color;
   text-decoration: none;
 }
 
-label{font-weight: normal;}
-small, .small{font-size: @font-size-sm;}
-.badge, .label{font-weight: bold; text-shadow: 0 1px 0 rgba(0, 0, 0, .2)}
-.badge.bg-light, .label.bg-light{text-shadow:none;}
-.badge{
+label {
+  font-weight: normal;
+}
+
+small, .small {
+  font-size: @font-size-sm;
+}
+
+.badge, .label {
+  font-weight: bold;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, .2)
+}
+
+.badge.bg-light, .label.bg-light {
+  text-shadow: none;
+}
+
+.badge {
   background-color: @badge-bg;
-  &.up{
+  &.up {
     position: relative;
     top: -10px;
-    padding:3px 6px;
+    padding: 3px 6px;
     margin-left: -10px;
   }
 }
 
-.badge-sm{
+.badge-sm {
   font-size: 85%;
   padding: 2px 5px !important;
 }
 
-.label-sm{
+.label-sm {
   padding-top: 0;
   padding-bottom: 1px;
 }
 
 .badge-white {
   background-color: transparent;
-  border: 1px solid rgba(255,255,255,0.35);
+  border: 1px solid rgba(255, 255, 255, 0.35);
   padding: 2px 6px;
 }
 
 .badge-empty {
   background-color: transparent;
-  border: 1px solid rgba(0,0,0,0.15);
+  border: 1px solid rgba(0, 0, 0, 0.15);
   color: inherit;
 }
 
-blockquote{
+blockquote {
   border-color: @border-color;
 }
 
-.caret-white{
+.caret-white {
   border-top-color: #fff;
-  border-top-color: rgba(255,255,255,.65);
+  border-top-color: rgba(255, 255, 255, .65);
   a:hover & {
     border-top-color: #fff;
   }
 }
 
-.thumbnail{
+.thumbnail {
   border-color: @border-color;
 }
 
-.progress{
+.progress {
   background-color: @brand-light;
 }
-.progress-xxs{
+
+.progress-xxs {
   height: 2px
 }
-.progress-xs{
+
+.progress-xs {
   height: 6px
 }
-.progress-sm{
+
+.progress-sm {
   height: 12px;
-  .progress-bar{
+  .progress-bar {
     font-size: 10px;
     line-height: 1em;
   }
 }
 
-.progress, .progress-bar{
+.progress, .progress-bar {
   .box-shadow(none);
 }
 
-.progress-bar-primary{
+.progress-bar-primary {
   background-color: @brand-primary;
 }
-.progress-bar-info{
+
+.progress-bar-info {
   background-color: @brand-info;
 }
-.progress-bar-success{
+
+.progress-bar-success {
   background-color: @brand-success;
 }
-.progress-bar-warning{
+
+.progress-bar-warning {
   background-color: @brand-warning;
 }
-.progress-bar-danger{
+
+.progress-bar-danger {
   background-color: @brand-danger;
 }
-.progress-bar-black{
+
+.progress-bar-black {
   background-color: @brand-black;
 }
-.progress-bar-white{
+
+.progress-bar-white {
   background-color: #fff;
 }
 
-
 .accordion-group,
-.accordion-inner{
+.accordion-inner {
   border-color: @border-color;
   border-radius: @border-radius-base;
 }
 
-.alert{
+.alert {
   font-size: @font-size-sm;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
-  .close i{
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  .close i {
     font-size: 12px;
     font-weight: normal;
     display: block;
   }
 }
 
-.form-control{
+.form-control {
   border-color: @input-border;
   border-radius: @input-border-radius;
   &,
-  &:focus {    
+  &:focus {
     .box-shadow(none);
   }
-  &:focus{
+  &:focus {
     border-color: @input-border-focus;
   }
 }
 
-.form-horizontal{
-   .control-label.text-left{
-      text-align: left;
-   }
+.form-horizontal {
+  .control-label.text-left {
+    text-align: left;
+  }
 }
 
-.form-control-spin{
+.form-control-spin {
   position: absolute;
   z-index: 2;
   right: 10px;
@@ -171,46 +194,46 @@ blockquote{
   margin-top: -7px;
 }
 
-.input-lg{
+.input-lg {
   height: 45px;
 }
 
-.input-group-addon{
+.input-group-addon {
   border-color: @input-border;
   background-color: @brand-light;
 }
 
-.list-group{
-  border-radius: @border-radius-base;  
+.list-group {
+  border-radius: @border-radius-base;
   &.no-radius {
-    .list-group-item{
+    .list-group-item {
       border-radius: 0 !important;
     }
   }
   &.no-borders {
-    .list-group-item{
+    .list-group-item {
       border: none;
     }
   }
-  &.no-border{
-    .list-group-item{
+  &.no-border {
+    .list-group-item {
       border-width: 1px 0;
     }
   }
-  &.no-bg{
-    .list-group-item{
+  &.no-bg {
+    .list-group-item {
       background-color: transparent;
     }
   }
 }
 
-.list-group-item{
+.list-group-item {
   border-color: @list-group-item-border;
   padding-right: 15px;
-  a&{
+  a& {
     &:hover,
     &:focus,
-    &.hover{
+    &.hover {
       background-color: @list-group-item-hover;
     }
   }
@@ -221,26 +244,26 @@ blockquote{
     color: #fff;
     border-color: @list-group-active-color !important;
     background-color: @list-group-active-color !important;
-    .text-muted{
+    .text-muted {
       color: lighten(@list-group-active-color, 30%) !important;
     }
-    a{
+    a {
       color: #fff;
     }
   }
-  &.focus{
+  &.focus {
     background-color: @list-group-item-focus !important;
   }
-  &.select{
+  &.select {
     position: relative;
     z-index: 1;
     background-color: @list-group-select-color !important;
-    border-color: darken( @list-group-select-color , 5%);
+    border-color: darken(@list-group-select-color , 5%);
   }
-  
+
   .list-group-alt & {
-    &:nth-child(2n+2){
-      background-color: rgba(0,0,0,0.02) !important;
+    &:nth-child(2n+2) {
+      background-color: rgba(0, 0, 0, 0.02) !important;
     }
   }
   .list-group-lg & {
@@ -254,34 +277,34 @@ blockquote{
     margin-bottom: 5px;
     border-radius: 3px;
   }
-  > .badge{
+  > .badge {
     margin-right: 0;
   }
   > .fa-chevron-right {
     float: right;
     margin-top: 4px;
     margin-right: -5px;
-    & + .badge{
+    & + .badge {
       margin-right: 5px;
     }
   }
 }
 
-.nav-pills{
+.nav-pills {
   &.no-radius {
-    > li{
+    > li {
       > a {
         border-radius: 0;
       }
     }
   }
-  > li{
+  > li {
     &.active {
-      > a{
+      > a {
         color: #fff !important;
         background-color: @brand-info;
         &:hover,
-        &:active{
+        &:active {
           background-color: darken(@brand-info, 5%);
         }
       }
@@ -289,112 +312,112 @@ blockquote{
   }
 }
 
-.nav{
-  > li{
-    > a{
+.nav {
+  > li {
+    > a {
       &:hover,
-      &:focus{
+      &:focus {
         background-color: @nav-bg;
       }
     }
   }
-  &.nav-lg{
-    > li > a{
+  &.nav-lg {
+    > li > a {
       padding: 20px 20px;
     }
   }
-  &.nav-md{
-    > li > a{
+  &.nav-md {
+    > li > a {
       padding: 15px 15px;
     }
   }
-  &.nav-sm{
-    > li > a{
+  &.nav-sm {
+    > li > a {
       padding: 6px 12px;
     }
   }
-  &.nav-xs{
-    > li > a{
+  &.nav-xs {
+    > li > a {
       padding: 4px 10px;
     }
   }
-  &.nav-xxs{
-    > li > a{
+  &.nav-xxs {
+    > li > a {
       padding: 1px 10px;
     }
   }
-  &.nav-rounded{
-    > li > a{
+  &.nav-rounded {
+    > li > a {
       border-radius: 20px;
     }
   }
-  .open{
-    > a{
+  .open {
+    > a {
       &,
       &:hover,
-      &:focus{
+      &:focus {
         background-color: @nav-bg;
       }
     }
   }
 }
 
-.nav-tabs{
+.nav-tabs {
   border-color: @border-color;
-  > li{
-    > a{
-      border-radius: @panel-border-radius @panel-border-radius 0 0;      
+  > li {
+    > a {
+      border-radius: @panel-border-radius @panel-border-radius 0 0;
       border-bottom-color: @border-color;
     }
     &:hover > a,
     &.active > a,
-    &.active > a:hover{
-      border-color: @border-color;      
+    &.active > a:hover {
+      border-color: @border-color;
     }
-    &.active > a{
+    &.active > a {
       border-bottom-color: #fff !important;
     }
   }
   .nav-tabs-alt & {
-    &.nav-justified{
-      > li{
+    &.nav-justified {
+      > li {
         display: table-cell;
         width: 1%;
       }
     }
-    > li{
+    > li {
       > a {
         border-radius: 0;
         border-color: transparent !important;
         background: transparent !important;
         border-bottom-color: @border-color !important;
       }
-      &.active{
+      &.active {
         > a {
-          border-bottom-color: @brand-info !important;          
+          border-bottom-color: @brand-info !important;
         }
-      }      
+      }
     }
   }
 }
 
-.tab-container{
+.tab-container {
   margin-bottom: 15px;
-  .tab-content{
-    padding:15px;
+  .tab-content {
+    padding: 15px;
     background-color: #fff;
     border: 1px solid @border-color;
-    border-top-width: 0; 
+    border-top-width: 0;
     border-radius: 0 0 @panel-border-radius @panel-border-radius;
   }
 }
 
-.pagination{
-  > li{
-    > a{
+.pagination {
+  > li {
+    > a {
       border-color: @border-color;
       &:hover,
-      &:focus{
+      &:focus {
         border-color: @border-color;
         background-color: @brand-light;
       }
@@ -402,49 +425,49 @@ blockquote{
   }
 }
 
-.panel{
+.panel {
   border-radius: @panel-border-radius;
-  .accordion-toggle{
+  .accordion-toggle {
     font-size: 14px;
     display: block;
     cursor: pointer;
   }
-  .list-group-item{
+  .list-group-item {
     border-color: @panel-list-group-border;
   }
-  &.no-borders{
+  &.no-borders {
     border-width: 0;
     .panel-heading,
-    .panel-footer{
+    .panel-footer {
       border-width: 0;
     }
   }
 }
 
-.panel-heading{
-  .panel-default &{
+.panel-heading {
+  .panel-default & {
     background-color: @panel-heading-bg;
   }
   border-radius: @panel-border-radius @panel-border-radius 0 0;
-  &.no-border{
-    margin:-1px -1px 0 -1px;
+  &.no-border {
+    margin: -1px -1px 0 -1px;
     border: none;
   }
-  .nav{
+  .nav {
     margin: -10px  -15px;
   }
-  .list-group{
+  .list-group {
     background: transparent;
   }
 }
 
-.panel-footer{
+.panel-footer {
   border-color: @panel-heading-border;
   border-radius: 0 0 @panel-border-radius @panel-border-radius;
   background-color: @panel-footer-bg;
 }
 
-.panel-default{
+.panel-default {
   border-color: @panel-border;
   > .panel-heading,
   > .panel-footer {
@@ -452,54 +475,56 @@ blockquote{
   }
 }
 
-.panel-group .panel-heading + .panel-collapse .panel-body{
+.panel-group .panel-heading + .panel-collapse .panel-body {
   border-top: 1px solid #eaedef;
 }
 
-.table{
+.table {
   > tbody,
   > tfoot {
     > tr {
       > td {
-        padding:8px 15px;
+        padding: 8px 15px;
         border-top: 1px solid @table-border-color;
       }
     }
   }
-  > thead > tr > th{
-    padding:8px 15px;
+  > thead > tr > th {
+    padding: 8px 15px;
     border-bottom: 1px solid @table-border-color;
   }
 }
-.table-bordered{
+
+.table-bordered {
   border-color: @table-border-color;
-  > tbody{
-    > tr{
-      > td{
+  > tbody {
+    > tr {
+      > td {
         border-color: @table-border-color;
       }
     }
   }
-  > thead > tr > th{
+  > thead > tr > th {
     border-color: @table-border-color;
   }
 }
-.table-striped{
+
+.table-striped {
   > tbody {
-    > tr{
-      &:nth-child(odd){
+    > tr {
+      &:nth-child(odd) {
         > td,
-        > th{
+        > th {
           background-color: @table-striped-color;
         }
       }
     }
   }
   > thead {
-    > th{
+    > th {
       background-color: @table-striped-color;
       border-right: 1px solid @table-border-color;
-      &:last-child{
+      &:last-child {
         border-right: none
       }
     }
@@ -511,72 +536,72 @@ blockquote{
   border-color: @border-color;
 }
 
-.dropdown-menu{
+.dropdown-menu {
   border-radius: @border-radius-base;
   .box-shadow(0 2px 6px rgba(0, 0, 0, 0.1));
   border: 1px solid @border-color;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  &.pull-left{
-    left:100%;
+  &.pull-left {
+    left: 100%;
   }
-  > .panel{
+  > .panel {
     border: none;
     margin: -5px 0;
   }
-  > li > a{
+  > li > a {
     padding: 5px 15px;
   }
   > li > a:hover,
   > li > a:focus,
   > .active > a,
-  > .active > a:hover, 
-  > .active > a:focus{
+  > .active > a:hover,
+  > .active > a:focus {
     background-image: none;
-    filter:none;
+    filter: none;
     background-color: @brand-light !important;
     color: @link-hover-color;
   }
 }
 
-.dropdown-header{
+.dropdown-header {
   padding: 5px 15px;
 }
 
-.dropdown-submenu{
+.dropdown-submenu {
   position: relative;
   &:hover,
-  &:focus{
-    > a{
+  &:focus {
+    > a {
       background-color: @brand-light !important;
       color: @text-color;
-    }    
+    }
     > .dropdown-menu {
       display: block;
     }
   }
-  &.pull-left{
+  &.pull-left {
     float: none !important;
-    > .dropdown-menu{
+    > .dropdown-menu {
       left: -100%;
       margin-left: 10px;
     }
   }
-  .dropdown-menu{
-    left:100%;
-    top:0;
+  .dropdown-menu {
+    left: 100%;
+    top: 0;
     margin-top: -6px;
     margin-left: -1px
   }
 
   .dropup & {
-    > .dropdown-menu{
+    > .dropdown-menu {
       top: auto;
       bottom: 0;
     }
   }
 }
 
-.btn-group > .btn{
+.btn-group > .btn {
   margin-left: -1px;
 }
 
@@ -588,35 +613,37 @@ blockquote{
   padding-right: 15px;
 }
 
-.col-0{clear:left;}
+.col-0 {
+  clear: left;
+}
 
-.row.no-gutter{
+.row.no-gutter {
   margin-left: 0;
   margin-right: 0;
 }
 
-.no-gutter [class*="col"]{
+.no-gutter [class*="col"] {
   padding: 0;
 }
 
-.row-sm{
+.row-sm {
   margin-left: -10px;
   margin-right: -10px;
-  > div{
+  > div {
     padding-left: 10px;
     padding-right: 10px;
   }
 }
 
-.modal-backdrop{
+.modal-backdrop {
   background-color: @brand-dark;
-  &.in{
+  &.in {
     opacity: 0.8;
     filter: alpha(opacity=80);
   }
 }
 
-.modal-over{
+.modal-over {
   left: 0;
   right: 0;
   top: 0;
@@ -624,8 +651,8 @@ blockquote{
   position: fixed;
 }
 
-.modal-center{
+.modal-center {
   position: absolute;
-  left:50%;
-  top:50%;
+  left: 50%;
+  top: 50%;
 }

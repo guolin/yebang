@@ -3,18 +3,18 @@
   app.settings.asideDock = false;
   ">
   <!-- main -->
-  <div class="col">
+  <div class="col" ng-controller="LiveCtrl">
     <!-- main header -->
     <div class="bg-light lter b-b wrapper-md">
       <div class="row">
         <div class="col-sm-6 col-xs-12">
-          <h1 class="m-n font-thin h3 text-black">湖南电视台 实时关注度</h1>
-          <small class="text-muted"></small>
+          <h1 class="m-n font-thin h3 text-black">{{channelName}}实时关注度</h1>
+          <small class="text-muted">当前时刻 {{currentDate}}</small>
         </div>
       </div>
     </div>
     <!-- / main header -->
-    <div class="wrapper-md" ng-controller="RatingCtrl">
+    <div class="wrapper-md">
       <!-- stats -->
       <div class="row">
 
@@ -23,42 +23,35 @@
           <div class="row row-sm text-center">
             <div class="col-xs-6">
               <div class="panel padder-v item">
-                <div class="h1 text-info font-thin h1">12.2342%</div>
+                <div class="h1 text-info font-thin h1">{{currentShare}}%</div>
                 <span class="text-muted text-xs">当前市场份额</span>
               </div>
             </div>
             <div class="col-xs-6">
-              <a href class="block panel padder-v bg-primary item">
-                <span class="text-white font-thin h1 block">1.3123%</span>
+              <div class="block panel padder-v bg-primary item">
+                <span class="text-white font-thin h1 block">{{currentRating}}%</span>
                 <span class="text-muted text-xs">当前关注度</span>
-              </a>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- 电视台对比 -->
-        <div class="row wrapper ">
-          <div class="form-group col-xs-6">
-            <label class="control-label">加入对比电视台</label>
-            <div>
-              <select ui-jq="chosen" class="w-full">
-                <option value="AK">湖北卫视</option>
-                <option value="HI">浙江卫视</option>
-                <option value="HI">广西卫视</option>
-                <option value="HI">兵团卫视</option>
-              </select>
-            </div>
-          </div>
-        </div>
 
         <div class="col-md-12">
-          <div class="panel wrapper" ng-init="showSpline=true">
-            <h4 class="font-thin m-t-none m-b text-muted">最近30分钟关注度
-            <a href="#" class="h5 text-muted m-l-sm pull-right">
-              <i class="fa fa-clock-o"></i> 历史关注度
-            </a>
-            </h4>
+          <div class="panel wrapper">
+            <button type="button" class="btn btn-default"
+                    ng-class="{active:frequence === 'minutes'}"
+                    ng-click="setFrequence('minutes')">最近60分
+            </button>
+            <button type="button" class="btn btn-default"
+                    ng-class="{active:frequence === 'seconds'}"
+                    ng-click="setFrequence('seconds')">最近60秒
+            </button>
+            <a href="#" class="h5 text-muted m-l-sm pull-right"><i class="fa fa-clock-o"></i>历史关注度</a>
+
             <div class="m-b-lg bg-light dk" ui-echarts option="option" style="height: 348px;"></div>
+
+
           </div>
         </div>
       </div>
@@ -67,31 +60,26 @@
       <div class="row">
         <div class="col-md-6">
           <h4>最近10档节目</h4>
-          <div class="panel no-border">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>名称</th>
-                  <th>收视率</th>
-                </tr>
-              </thead>
-              <tbody ng-init="items = [1,2,3,4,5,6,7,8,9,10]" >
-                <tr ng-repeat="item in items">
-                  <td>
-                    <a href="#/tvrd"><span>爸爸去哪儿</span></a><br class="visable-xs" />
-                    <small>12:34 － 12:55</small>
-                  </td>
-                  <td>
-                    2.1242% <br />
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+
+          <div class="list-group list-group-lg list-group-sp">
+            <a herf class="list-group-item clearfix" ng-repeat="item in latestTvshows">
+              <span class="pull-right ">
+                {{item.ssl | number:4}}%
+              </span>
+              <span class="clear">
+              <span>{{item.cd_name}}</span>
+              <small class="text-muted clear text-ellipsis">
+                {{item.start_time | kuDate}} ~ {{item.end_time | kuDate}}
+              </small>
+              </span>
+            </a>
           </div>
         </div>
+
         <div class="col-md-6">
-          <h4 >最近5条广告</h4>
-          <div ng-init="items = [1,2,3,4,5]" class="list-group list-group-lg list-group-sp" >
+          <h4>最近5条广告</h4>
+
+          <div ng-init="items = [1,2,3,4,5,6,7,8,9,0]" class="list-group list-group-lg list-group-sp">
             <a herf class="list-group-item clearfix" ng-repeat="item in items">
               <span class="pull-left thumb-md m-r">
               <img src="img/a4.jpg" alt="...">

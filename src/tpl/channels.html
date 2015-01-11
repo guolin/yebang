@@ -1,68 +1,74 @@
-<div class="bg-light lter b-b wrapper-md">
-  <h1 class="m-n font-thin h3">历史关注度排行</h1>
-</div>
+<div class="wrapper" ng-controller="ChannelsTopCtrl">
 
-<div class="row wrapper ">
-
-  <div class="form-group col-xs-12">
-    <label class="control-label">日期选择</label>
-    <div ng-controller="DatepickerDemoCtrl">
+  <div class="row">
+    <div class="form-group col-sm-6">
       <div class="input-group">
-        <input type="text" class="form-control" show-weeks="false" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
-        <span class="input-group-btn">
-
-        <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-
-      </span>
+        <input type="text" class="form-control"
+               datepicker-popup="yyyy-MM-dd" ng-model="dt"
+               is-open="opened"
+               datepicker-options="dateOptions" clear-text="清除"
+               ng-required="true" close-text="关闭"/>
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open($event)">
+                      <i class="glyphicon glyphicon-calendar"></i>
+                    </button>
+                </span>
       </div>
     </div>
-
+    <div class="form-group col-sm-6 ">
+      <div class="btn-group btn-group-justified" role="group" aria-label="...">
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-default"
+                  ng-click="tvType = '00'"
+                  ng-class="{active: tvType === '00'}">全部
+          </button>
+        </div>
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-default"
+                  ng-click="tvType = '01'"
+                  ng-class="{active: tvType === '01'}">央视
+          </button>
+        </div>
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-default"
+                  ng-click="tvType = '02'"
+                  ng-class="{active: tvType === '02'}">卫视
+          </button>
+        </div>
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-default"
+                  ng-click="tvType = '03'"
+                  ng-class="{active: tvType === '03'}">其他
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="panel panel-default table-responsive b-none">
+        <div ng-click="refresh()" class="panel-heading">{{dt|date:'M月d日': +8}} 电视台排行</div>
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>#</th>
+            <th>名称</th>
+            <th>关注度</th>
+            <th>市占比</th>
+          </tr>
+          </thead>
+          <tbody">
+          <tr ng-repeat="item in items">
+            <td>{{item.no}}</td>
+            <td><a ui-sref="app.channelDetail({id:item})">{{item.tv_name}}</a></td>
+            <td>{{item.tv_ratings}}%</td>
+            <td>{{item.market_ratings}}%</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 
-
-</div>
-<div class="wrapper-md">
-    <tabset class="tab-container  m-b-none">
-
-      <tab>
-        <tab-heading>央视</tab-heading>
-
-        <div class="table-responsive b-none">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>名称</th>
-                <th>市场占有率</th>
-                <th>收视率</th>
-              </tr>
-            </thead>
-            <tbody ng-init="items = [1,2,3,4,5,6,7,8,9,10]">
-              <tr ng-repeat="item in items">
-                <td>{{item}}</td>
-                <td><a ui-sref="app.channelDetail({id:item})">湖南卫视</a></td>
-                <td>12.3425%</td>
-                <td>1.3425%</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-
-      </tab>
-
-      <tab>
-        <tab-heading>卫视</tab-heading>
-        I've got an HTML heading, and a select callback. Pretty cool!
-      </tab>
-      <tab>
-        <tab-heading>地面频道</tab-heading>
-        I've got an HTML heading, and a select callback. Pretty cool!
-      </tab>
-      <tab>
-        <tab-heading>其他</tab-heading>
-        I've got an HTML heading, and a select callback. Pretty cool!
-      </tab>
-    </tabset>
 
 </div>

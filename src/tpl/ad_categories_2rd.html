@@ -1,59 +1,60 @@
 <div class="bg-light lter b-b wrapper-md">
-	<h1 class="m-n font-thin h3">广告：品类报表：快消品</h1>
+    <h1 class="m-n font-thin h3">广告：品类报表：快消品</h1>
 </div>
 <div class="row wrapper ">
-	<div class="form-group col-xs-12">
-		<label class="control-label">报表选择</label>
-		<div>
-			<select ui-jq="chosen" class="w-full">
-				<option value="AK">32周周报</option>
-				<option value="HI">33周周报</option>
-				<option value="HI">34周周报</option>
-				<option value="HI">35周周报</option>
-			</select>
-		</div>
-	</div>
+    <div class="form-group col-xs-12">
+        <label class="control-label">报表选择</label>
 
-	<div class="table-responsive b-none col-xs-12 col-sm-6">
-		<h4>子品类对比</h4>
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>#</th>
-					<th>名称</th>
-					<th>市场份额</th>
-					<th>毛评点</th>
-				</tr>
-			</thead>
-			<tbody ng-init="items = [1,2,3,4,5,6,7,8,9,10]">
-				<tr ng-repeat="item in items">
-					<td>{{item}}</td>
-					<td><a ui-sref="app.channelDetail({id:item})">快消品</a></td>
-					<td>12.3425%</td>
-					<td>{{item*34.353|number:3}}</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-	<div class="table-responsive b-none col-xs-12 col-sm-6">
-		<h4>品牌对比</h4>
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>#</th>
-					<th>品牌</th>
-					<th>市场份额</th>
-					<th>毛评点</th>
-				</tr>
-			</thead>
-			<tbody ng-init="items = [1,2,3,4,5,6,7,8,9,10]">
-				<tr ng-repeat="item in items">
-					<td>{{item}}</td>
-					<td><a ui-sref="app.channelDetail({id:item})">宝马</a></td>
-					<td>12.3425%</td>
-					<td>{{item*34.353|number:3}}</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
+        <div>
+            <select ui-jq="chosen" class="w-full">
+                <option value="AK">32周周报</option>
+                <option value="HI">33周周报</option>
+                <option value="HI">34周周报</option>
+                <option value="HI">35周周报</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="table-responsive b-none col-xs-12 col-sm-6">
+        <h4>子品类对比</h4>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>名称</th>
+                <th>市场份额</th>
+                <th>毛评点</th>
+            </tr>
+            </thead>
+            <tbody ng-init="items = [1,2,3,4,5,6,7,8,9,10]">
+            <tr ng-repeat="item in items">
+                <td>{{item}}</td>
+                <td><a ui-sref="app.channelDetail({id:item})">快消品</a></td>
+                <td>12.3425%</td>
+                <td>{{item*34.353|number:3}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="table-responsive b-none col-xs-12 col-sm-6">
+        <h4>品牌对比</h4>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>品牌</th>
+                <th>市场份额</th>
+                <th>毛评点</th>
+            </tr>
+            </thead>
+            <tbody ng-init="items = [1,2,3,4,5,6,7,8,9,10]">
+            <tr ng-repeat="item in items">
+                <td>{{item}}</td>
+                <td><a ui-sref="app.channelDetail({id:item})">宝马</a></td>
+                <td>12.3425%</td>
+                <td>{{item*34.353|number:3}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

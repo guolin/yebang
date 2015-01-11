@@ -1,42 +1,44 @@
 <div class="bg-light lter b-b wrapper-md">
-  <h1 class="m-n font-thin h3">受众属性分析</h1>
+    <h1 class="m-n font-thin h3">受众属性分析</h1>
 </div>
 
 <div class="row wrapper-md">
-    <div class="col-sm-6 connected" ui-jq="sortable" ui-options="{items:'.panel', handle:'.panel-heading', connectWith:'.connected'}">
-      <div class="panel panel-info">
-        <div class="panel-heading">
-          24小时关注度分布
+    <div class="col-sm-6 connected" ui-jq="sortable"
+         ui-options="{items:'.panel', handle:'.panel-heading', connectWith:'.connected'}">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                24小时关注度分布
+            </div>
+            <div class="list-group bg-white" ng-controller="Rating24Ctrl">
+                <div class="m-b-lg bg-light dk" ui-echarts option="option" style="height: 348px;"></div>
+            </div>
         </div>
-        <div class="list-group bg-white" ng-controller="Rating24Ctrl">
-           <div class="m-b-lg bg-light dk" ui-echarts option="option" style="height: 348px;"></div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                开机率
+            </div>
+            <div class="panel-body">
+
+            </div>
         </div>
-      </div>
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          开机率                   
-        </div>
-        <div class="panel-body">
-          
-        </div>
-      </div>
     </div>
-    <div class="col-sm-6 connected" ui-jq="sortable" ui-options="{items:'.panel', handle:'.panel-heading', connectWith:'.connected'}">
-      <div class="panel panel-success">
-        <div class="panel-heading">
-          平均每天收视时长
+    <div class="col-sm-6 connected" ui-jq="sortable"
+         ui-options="{items:'.panel', handle:'.panel-heading', connectWith:'.connected'}">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                平均每天收视时长
+            </div>
+
         </div>
-        
-      </div>
-      <div class="panel panel-default">
-        <div class="panel-heading">                    
-          直播率
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                直播率
+            </div>
+            <div class="panel-body">
+
+            </div>
         </div>
-        <div class="panel-body">
-          
-        </div>
-      </div>    
     </div>
-  </div>
+</div>
 
 </div>
