@@ -45,10 +45,10 @@ app.controller('ChannelsTopCtrl', ['$scope', '$http', '$timeout',
 
     }]);
 
-app.controller('ChannelCtrl', ['$scope', '$http',
-    function($scope, $http){
+app.controller('ChannelCtrl', ['$scope', '$http','$stateParams',
+    function($scope, $http, $stateParams){
 
-
+        $scope.cid = $stateParams.id
         $scope.dateOptions = {
             formatYear: 'yy',
             startingDay: 1,
@@ -151,7 +151,7 @@ app.controller('ChannelCtrl', ['$scope', '$http',
         $scope.refresh = function(){
             var from = moment($scope.from).format('YYYY-MM-DD');
             var to = moment($scope.to).format('YYYY-MM-DD');
-            $http.get('/api/ratings_history?tv_id=24&start_ds='+from+'&end_ds='+to).
+            $http.get('/api/ratings_history?tv_id='+$scope.cid+'&start_ds='+from+'&end_ds='+to).
                 success(function (data, status, headers, config) {
                     if(data.code !== 0) return;
                     $scope.avgRating = data.result.avg_tv_ratings;
@@ -173,12 +173,21 @@ app.controller('ChannelCtrl', ['$scope', '$http',
                 });
         };
 
+        $scope.getEpgItems = function(){
+            $http.get('api/ratings_epg_history?tv_id='+$scope.cid+'&start_ds=2015-01-11&end_ds=2015-01-11&page_no=1&page_size=65').
+                success(function(data){
+                    $scope.items = data.result.list;
+                });
+        }
 
         $scope.yesterday();
         $scope.refresh();
+        $scope.getEpgItems();
 
         $scope.$watchGroup(['from','to'], function (newValue, oldValue) {
             $scope.refresh();
         });
+
+
 
     }]);

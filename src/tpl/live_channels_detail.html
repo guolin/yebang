@@ -37,19 +37,24 @@
         </div>
 
 
-        <div class="col-md-12">
-          <div class="panel wrapper">
-            <button type="button" class="btn btn-default"
-                    ng-class="{active:frequence === 'minutes'}"
-                    ng-click="setFrequence('minutes')">最近60分
-            </button>
-            <button type="button" class="btn btn-default"
-                    ng-class="{active:frequence === 'seconds'}"
-                    ng-click="setFrequence('seconds')">最近60秒
-            </button>
-            <a href="#" class="h5 text-muted m-l-sm pull-right"><i class="fa fa-clock-o"></i>历史关注度</a>
-
-            <div class="m-b-lg bg-light dk" ui-echarts option="option" style="height: 348px;"></div>
+        <div class="col-md-12  no-padder-lg-xs">
+          <h4>实时关注度</h4>
+          <div class="panel wrapper  no-padder-lg-xs">
+            <div class="btn-group">
+              <button type="button" class="btn btn-default"
+                      ng-class="{active:frequence === 'minutes'}"
+                      ng-click="setFrequence('minutes')">最近60分
+              </button>
+              <button type="button" class="btn btn-default"
+                      ng-class="{active:frequence === 'seconds'}"
+                      ng-click="setFrequence('seconds')">最近60秒
+              </button>
+              <button type="button" class="btn btn-default"
+                      ng-class="{active:frequence === 'pause'}"
+                      ng-click="setFrequence('pause')"><i class="fa fa-pause"></i>
+              </button>
+            </div>
+            <div class="bg-light" ui-echarts option="option" style="height: 348px;"></div>
 
 
           </div>

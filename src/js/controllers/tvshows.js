@@ -41,8 +41,8 @@ app.controller('TvShowsTopCtrl', ['$scope','$http', function ($scope, $http) {
 
 }]);
 
-app.controller('TvshowsCtrl', ['$scope',
-    function ($scope) {
+app.controller('TvshowsCtrl', ['$scope', '$http',
+    function ($scope, $http) {
 
         $scope.option = {
             color: ['#23b7e5', '#27c24c', '#fad733', '#7266ba',
@@ -241,5 +241,13 @@ app.controller('TvshowsCtrl', ['$scope',
 
             ]
         };
+
+        $scope.getItems = function(){
+            $http.get('/fapi/tvshows.json').success(function (data) {
+                    $scope.items = data.results;
+                }
+            )
+        };
+        $scope.getItems();
 
     }]);

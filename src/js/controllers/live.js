@@ -25,13 +25,15 @@ app.controller('LiveCtrl', ['$scope', '$http', '$interval','$stateParams',
                     '#6699FF','#ff6666','#3cb371','#b8860b','#30e0e0'],
                 animation: false,
                 tooltip : {
-                    trigger: 'axis'
+                    trigger: 'axis',
+                    showDelay : 0,
+                    transitionDuration: 0,
+                    hideDelay: 1000
                 },
                 grid:{
                     borderColor:'#ccc',
                     borderWidth:0,
-                    x:'10',y:'10',y2:'30',x2:'60'
-
+                    x:'10',y:'10',y2:'40',x2:'60'
                 },
                 xAxis : [
                     {
@@ -63,6 +65,12 @@ app.controller('LiveCtrl', ['$scope', '$http', '$interval','$stateParams',
                     }
                 ]
             };
+
+            if($scope.isXSmallDevice()){
+                option.grid.x = 0;
+                option.grid.x2 = 0;
+            }
+            console.log($scope.isXSmallDevice());
             return option;
         };
 
@@ -88,10 +96,14 @@ app.controller('LiveCtrl', ['$scope', '$http', '$interval','$stateParams',
 
         $scope.setFrequence = function(frequence){
 
+            var cancle = function(){
+                if($scope.promise){
+                    $interval.cancel($scope.promise);
+                };
+            };
+
             $scope.frequence = frequence;
-            if($scope.promise){
-                $interval.cancel($scope.promise);
-            }
+            cancle();
 
             if(frequence === 'seconds'){
 
@@ -99,20 +111,21 @@ app.controller('LiveCtrl', ['$scope', '$http', '$interval','$stateParams',
                 $scope.promise =  $interval(function () {
                     refresh('seconds');
                 }, 1000);
-            }else{
+            }else if(frequence === 'minutes'){
 
                 refresh('minutes');
                 $scope.promise =  $interval(function () {
                     refresh('minutes');
                 }, 1000*60);
-            }
+            }else{
+                cancle();
+            };
 
             $scope.$on('$destroy', function () {
-                if($scope.promise){
-                    $interval.cancel($scope.promise);
-                }
+                cancle();
             });
         };
+
 
         $scope.getLatestTvshows = function(){
             $http.get('/api/tv_lates_info?tvID='+$scope.cid+'&size=10').

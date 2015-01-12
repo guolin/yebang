@@ -60,4 +60,16 @@ angular.module('app')
                 return (/iPhone|iPod|iPad|Silk|Android|BlackBerry|Opera Mini|IEMobile/).test(ua);
             }
 
+            $scope.isXSmallDevice = function(){
+                if( $('#xs-test').css('display') == 'none' ){
+                    return false;
+                }else{
+                    return true;
+                }
+            }
+
+
+
+
         }]);
+
