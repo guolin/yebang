@@ -101,12 +101,25 @@ angular.module('app')
                 })
                 //电视台节目详情
                 .state('app.tvshowDetail', {
-                    url: '/tvshows/:showid',
+                    url: '/tvshows/{typeid}/{showid}',
                     templateUrl: 'tpl/tvshows_detail.html',
                     resolve: {
                         deps: ['$ocLazyLoad',
                             function ($ocLazyLoad) {
                                 return $ocLazyLoad.load(['js/controllers/tvshows.js']);
+                            }
+                        ]
+                    }
+                })
+
+                //流入流出
+                .state('app.io', {
+                    url: '/io',
+                    templateUrl: 'tpl/io.html',
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['js/controllers/io.js']);
                             }
                         ]
                     }

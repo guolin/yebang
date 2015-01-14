@@ -67,234 +67,111 @@ app.controller('TvShowsTopCtrl', ['$scope','$http', '$timeout',
 
 }]);
 
-app.controller('TvshowsCtrl', ['$scope', '$http',
-    function ($scope, $http) {
+app.controller('TvshowsCtrl', ['$scope', '$http','$stateParams',
+    function ($scope, $http, $stateParams) {
+        var typeid = $stateParams.typeid;
+        var showid = $stateParams.showid;
 
-        $scope.option = {
-            color: ['#23b7e5', '#27c24c', '#fad733', '#7266ba',
-                '#f05050', '#e8eff0', '#3a3f51', '#1c2b36', '#40e0d0',
-                '#1e90ff', '#ff6347', '#7b68ee', '#00fa9a', '#ffd700',
-                '#6699FF', '#ff6666', '#3cb371', '#b8860b', '#30e0e0'],
-            tooltip: {
-                show: true,
-                trigger: 'axis',
-                formatter: function (params,ticket,callback) {
-                    p = params;
-                    var res = params[0];
-                    console.log(res);
-                    setTimeout(function(){
-                        callback(ticket, '<img src="http://c.hiphotos.baidu.com/news/crop%3D0%2C16%2C1136%2C682%3Bw%3D638/sign=81b3404816ce36d3b64bd97007c316b6/faf2b2119313b07e1086ec9a0fd7912397dd8c6d.jpg" >');
-                    }, 1000);
-                    return res;
-                },
-                position : function(p) {
-                    // 位置回调
-                    //console.log && console.log(p);
-                    return [p[0] + 40, p[1] - 40];
-                    //return [0, 0]
-                }
-            },
-
-            toolbox: {
-                show: true,
-                feature: {
-                    magicType: {show: true, type: ['line', 'bar', 'stack', 'tiled']},
-                    saveAsImage: {show: true}
-                }
-            },
-            grid: {
-                x: 50, x2: 10, y: 30, y2: 20
-            },
-
-            legend: {
-                data: ['湖南卫视', '江苏卫视'], x: 'left'
-            },
-            xAxis: [
-                {
-                    type: 'category',
-                    data: [
-                        '2014-11-26'
-                        ,
-                        '2014-11-27'
-                        ,
-                        '2014-11-28'
-                        ,
-                        '2014-11-29'
-                        ,
-                        '2014-11-30'
-                        ,
-                        '2014-12-01'
-                        ,
-                        '2014-12-02'
-                        ,
-                        '2014-12-03'
-                        ,
-                        '2014-12-04'
-                        ,
-                        '2014-12-05'
-                        ,
-                        '2014-12-06'
-                        ,
-                        '2014-12-07'
-                        ,
-                        '2014-12-08'
-                        ,
-                        '2014-12-09'
-                        ,
-                        '2014-12-10'
-                        ,
-                        '2014-12-11'
-                        ,
-                        '2014-12-12'
-                        ,
-                        '2014-12-13'
-                        ,
-                        '2014-12-14'
-                        ,
-                        '2014-12-15'
-                        ,
-                        '2014-12-16'
-                        ,
-                        '2014-12-17'
-                        ,
-                        '2014-12-18'
-                        ,
-                        '2014-12-19'
-                        ,
-                        '2014-12-20'
-                        ,
-                        '2014-12-21'
-                        ,
-                        '2014-12-22'
-                        ,
-                        '2014-12-23'
-                        ,
-                        '2014-12-24'
-                        ,
-                        '2014-12-25'
-
-                    ]
-                }
-            ],
-            yAxis: [
-                {
-                    type: 'value',
-                    precision: 4,
-                    axisLabel: {formatter: '{value} %'}
-                }
-            ],
-            series: [
-
-                {
-                    name: '江苏卫视',
-                    type: 'bar',
-                    data: [
-
-                        0.1248, 0.0841, 0.3377, 0.165, 0.0412, 0.0242, 0.0386, 0.1411, 0.0804,
-                        0.3614
-                        ,
-                        0.1571
-                        ,
-                        0.0251
-                        ,
-                        0.0084
-                        ,
-                        0.0358
-                        ,
-                        0.1429
-                        ,
-                        0.0787
-                        ,
-                        0.3517
-                        ,
-                        0.1573
-                        ,
-                        0.0218
-                        ,
-                        0.0379
-                        ,
-                        0.0293
-                        ,
-                        0.0417
-                        ,
-                        0.1076
-                        ,
-                        0.2981
-                        ,
-                        0.1665
-                        ,
-                        0.0434
-                        ,
-                        0.0258
-                        ,
-                        0.0332
-                        , 0.1463, 0.0362
-
-                    ]
-                },
-                {
-                    name: '湖南卫视',
-                    type: 'bar',
-                    data: [
-                        0.1463, 0.0362,
-                        0.1248, 0.0841, 0.3377, 0.165, 0.0412, 0.0242, 0.0386, 0.1411, 0.0804,
-                        0.3614
-                        ,
-
-                        0.0787
-                        ,
-                        0.3517
-                        ,
-                        0.1573
-                        ,
-                        0.0218
-                        ,
-                        0.0379,
-                        0.1571
-                        ,
-                        0.0251
-                        ,
-                        0.0084
-                        ,
-                        0.0358
-                        ,
-                        0.1429
-
-                        ,
-                        0.0293
-                        ,
-                        0.0417
-                        ,
-                        0.1076
-                        ,
-                        0.2981
-                        ,
-                        0.1665
-                        ,
-                        0.0434
-                        ,
-                        0.0258
-                        ,
-                        0.0332
-
-
-                    ]
-                }
-
-            ]
+        var reportTypes = {
+            '1':'黄金时段电视剧',
+            '2':'晚间时段电视剧',
+            '3':'晚间时段综艺',
+            '4':'晚间时段节目'
         };
+        $scope.typeString = reportTypes[typeid];
+
+        var getOption = function (c,d ) {
+            var option = {
+                color: ['#23b7e5', '#27c24c', '#fad733', '#7266ba',
+                    '#f05050', '#e8eff0', '#3a3f51', '#1c2b36', '#40e0d0',
+                    '#1e90ff', '#ff6347', '#7b68ee', '#00fa9a', '#ffd700',
+                    '#6699FF', '#ff6666', '#3cb371', '#b8860b', '#30e0e0'],
+                tooltip: {
+                    show: true,
+                    trigger: 'axis',
+                    position : function(p) {
+                        return [p[0] + 40, p[1] - 40];
+                    }
+                },
+                toolbox: {
+                    show: true,
+                    feature: {
+                        magicType: {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                        saveAsImage: {show: true}
+                    }
+                },
+                grid: {
+                    x: 2, x2: 2, y: 30, y2: 20
+                },
+                legend: {
+                    data: [],
+                    x: 'left'
+                },
+                xAxis: [
+                    {
+                        type: 'category',
+                        data: c
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value',
+                        precision: 4,
+                        axisLabel: {formatter: '{value} %'}
+                    }
+                ],
+                series: []
+            };
+            var i;
+            for(i=0;i< d.length;i++){
+                var s = {
+                    name: d[i].name,
+                    type: 'bar',
+                    data: d[i].values
+                }
+                option.series.push(s);
+                option.legend.data.push(d[i].name);
+            }
+            return option;
+
+        };
+
+        $scope.refresh = function () {
+
+            $('.butterbar').removeClass('hide').addClass('active');
+            $http.get('/labapi/epg_detail_ratings?type='+typeid+'&ca_id='+showid).
+                success(function (data, status, headers, config) {
+
+
+                    var c = data.result.date;
+                    var v = data.result.values;
+                    $scope.name = data.result.name;
+
+
+                    $scope.option = getOption(c, v);
+                    // butterbar
+                    $timeout(function () {
+                        $('.butterbar').removeClass('active').addClass('hide');
+                    }, 500);
+                });
+        };
+
 
         $scope.getItems = function(){
             $('.butterbar').removeClass('hide').addClass('avtive');
-            $http.get('/fapi/tvshows.json').success(function (data) {
-                    $scope.items = data.results;
-                    $timeout(function () {
+            $http.get('/labapi/epg_detail?ca_id='+showid+'&page_size=150&type='+typeid).success(function (data) {
+                    $scope.items = data.result.list;
+                    setTimeout(function () {
                         $('.butterbar').removeClass('active').addClass('hide');
+                        $('.table').trigger('footable_initialize');
                     }, 500);
                 }
             )
         };
 
+        $scope.refresh();
         $scope.getItems();
+
+
 
     }]);

@@ -8,8 +8,8 @@
         <div class="bg-light lter b-b wrapper-md">
             <div class="row">
                 <div class="col-sm-6 col-xs-12">
-                    <h1 class="m-n font-thin h3 text-black">奔跑吧兄弟</h1>
-                    <small class="text-muted">卫视晚间综艺</small>
+                    <h1 class="m-n font-thin h3 text-black">{{name}}</h1>
+                    <small class="text-muted">{{typeString}}</small>
                 </div>
             </div>
         </div>
@@ -33,7 +33,7 @@
                 <div class="panel-heading">
                     搜索: <input id="filter" type="text" class="form-control input-sm w-sm inline m-r"/>
                 </div>
-                <table class="table m-b-none" ui-jq="footable" data-filter="#filter" data-page-size="10">
+                <table class="table m-b-none" ui-jq="footable" data-filter="#filter" data-page-size="20">
                     <thead>
                         <tr>
                             <th data-toggle="true">日期</th>
@@ -45,11 +45,11 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="item in items">
-                            <td>{{item.date}}</td>
-                            <td>{{item.channel}}</td>
-                            <td >{{item.duration}}</td>
-                            <td>{{item.rating}}</td>
-                            <td >{{item.share}}</td>
+                            <td>{{item.cd_name}}</td>
+                            <td>{{item.tv_name}}</td>
+                            <td >{{item.start_time}}</td>
+                            <td>{{item.tv_ratings}}</td>
+                            <td >{{item.market_ratings}}</td>
                         </tr>
                     </tbody>
                     <tfoot class="hide-if-no-paging">
