@@ -12,7 +12,7 @@ angular.module('app')
 angular.module('app')
     .filter('kuDate', function () {
         return function (date) {
-            var d = new Date(date)
+            var d = new Date(date);
             return moment(d).format('HH:mm');
         }
     });

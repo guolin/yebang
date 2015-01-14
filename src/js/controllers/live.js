@@ -1,22 +1,25 @@
-app.controller('LiveTopCtrl', ['$scope', '$http', function ($scope, $http) {
+app.controller('LiveTopCtrl', ['$scope', '$http','$timeout', function ($scope, $http,$timeout) {
     var getTop = function(){
-        $http.get('/fapi/live_top.json').
+        $('.butterbar').removeClass('hide').addClass('active');
+        $http.get('/api/channel_list').
             success(function (data, status, headers, config) {
                 $scope.items = data;
+                $timeout(function () {
+                    $('.butterbar').removeClass('active').addClass('hide');
+                }, 500);
             });
     };
     getTop();
 }]);
 
-app.controller('LiveCtrl', ['$scope', '$http', '$interval','$stateParams',
-    function ($scope, $http, $interval,$stateParams ) {
-        $scope.categories = [];
-        $scope.data = [];
+app.controller('LiveCtrl', ['$scope', '$http', '$interval','$stateParams','$timeout',
+    function ($scope, $http, $interval,$stateParams,$timeout ) {
         $scope.n = 1;
         $scope.cid = $stateParams.id;
         $scope.promise = '';
+        $scope.currentDate = moment().format('HH:mm:ss');
 
-        var getOption = function (categories, data) {
+        var getOption = function (categories, ratings , shares, tvshows) {
 
             var option = {
                 color: ['#23b7e5','#27c24c','#fad733','#7266ba',
@@ -28,21 +31,50 @@ app.controller('LiveCtrl', ['$scope', '$http', '$interval','$stateParams',
                     trigger: 'axis',
                     showDelay : 0,
                     transitionDuration: 0,
-                    hideDelay: 1000
+                    formatter: function (params,ticket,callback) {
+                        var rating = params[0][2];
+                        var time = moment(params[0][1], "YYYYMMDDhhmmss");
+                        var share = shares[params[0].dataIndex];
+                        var tvshow = tvshows[params[0].dataIndex];
+                        var detail = time.format("hh:mm:ss")+"<br />" + tvshow;
+                        detail += "<br />关注度: " + rating + "%";
+                        detail += "<br />市占比: " + share + "%";
+
+                        setTimeout(function(){
+                            var timeString = time.format('YYYYMMDDHHmm');
+                            var url = 'http://img1.kyimg.com/media/tv_rating_img/'+$scope.cid+'/'+timeString+'.jpg';
+                            var res = '<img width="120px" src="'+url+'" >';
+                            res += '<br />';
+                            res += detail;
+                            callback(ticket, res);
+                        }, 500);
+
+
+                        return detail;
+                    },
+                    position : function(p) {
+                        return [p[0] + 10, 5];
+                    }
                 },
                 grid:{
                     borderColor:'#ccc',
                     borderWidth:0,
-                    x:'10',y:'10',y2:'40',x2:'60'
+                    x:'2',y:'15',y2:'30',x2:'2'
                 },
                 xAxis : [
                     {
                         type : 'category',
                         boundaryGap : false,
                         data : categories,
-                        axisLabel:{textStyle:{color:'#ccc'}},
                         axisTick:{show:false},
-                        splitLine:{lineStyle:{color: ['#ccc'], width: 1, type: 'solid'}}
+                        splitLine:{lineStyle:{color: ['#ccc'], width: 1, type: 'solid'}},
+                        axisLabel: {
+                            textStyle: {color: '#ccc'},
+                            formatter: function (value) {
+                                var result = moment(value, 'YYYYMMDDhhmmss').format("hh:mm:ss");
+                                return result;
+                            }
+                        }
                     }
                 ],
                 yAxis : [
@@ -51,8 +83,12 @@ app.controller('LiveCtrl', ['$scope', '$http', '$interval','$stateParams',
                         scale: true,
                         position: 'right',
                         type : 'value',
-                        axisLabel:{margin:6, textStyle:{color:'#ccc'}},
+                        axisLabel:{
+                            margin:-45, textStyle:{color:'#ccc'},
+                            formatter:'{value}%'
+                        },
                         axisTick:{show:false},axisLine:{show:false}
+
                     }
                 ],
                 series : [
@@ -61,36 +97,39 @@ app.controller('LiveCtrl', ['$scope', '$http', '$interval','$stateParams',
                         type:'line',
                         smooth:true,
                         itemStyle: {normal: {areaStyle: {type: 'default'}}},
-                        data:data
+                        data:ratings
                     }
                 ]
             };
 
             if($scope.isXSmallDevice()){
-                option.grid.x = 0;
-                option.grid.x2 = 0;
+                option.grid.x = -1;
+                option.grid.x2 = -1;
             }
-            console.log($scope.isXSmallDevice());
+
             return option;
         };
 
         var refresh = function(frequency){
             $http.get('/api/ratings_'+ frequency +'?tv_id='+$scope.cid).
                 success(function (data, status, headers, config) {
-                    var minutes = data.result;
+                    var result = data.result;
                     var c = [];
-                    var d = [];
-                    for(var i = 0; i< minutes.length; i++) {
-                        var pattern = /(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})/;
-                        var dateString = minutes[i].timestamp.replace(pattern, '$1-$2-$3 $4:$5:$6');
-                        var date = new Date(dateString);
-                        c.push(moment(date).format('HH:mm:ss'));
-                        d.push(minutes[i].tv_ratings);
+                    var ratings = [];
+                    var shares = [];
+                    var tvshows = [];
+                    for(var i = 0; i< result.length; i++) {
+                        var t = result[i].timestamp;
+                        c.push(t);
+                        ratings.push(result[i].tv_ratings);
+                        shares.push(result[i].market_ratings);
+                        tvshows.push(result[i][t]);
                     }
-                    $scope.option = getOption(c,d);
+                    $scope.option = getOption(c,ratings,shares,tvshows);
                     $scope.currentDate = moment().format('HH:mm:ss');
-                    $scope.currentRating = minutes[minutes.length-1].tv_ratings;
-                    $scope.currentShare = minutes[minutes.length-1].market_ratings;
+                    $scope.currentRating = result[result.length-1].tv_ratings;
+                    $scope.currentShare = result[result.length-1].market_ratings;
+                    $scope.currentTvshow = result[result.length-1][result[result.length-1].timestamp];
                 });
         };
 
@@ -126,12 +165,11 @@ app.controller('LiveCtrl', ['$scope', '$http', '$interval','$stateParams',
             });
         };
 
-
         $scope.getLatestTvshows = function(){
             $http.get('/api/tv_lates_info?tvID='+$scope.cid+'&size=10').
                 success(function(data, status, headers, config){
-                    $scope.latestTvshows = data.info;
                     $scope.channelName = data.tv_name;
+                    $scope.latestTvshows = data.info.splice(0,5);
                 }).
                 error(function(data, status, headers, config){
                     console.log(data);
@@ -139,7 +177,7 @@ app.controller('LiveCtrl', ['$scope', '$http', '$interval','$stateParams',
         }
 
         $scope.setFrequence('minutes');
-        $scope.getLatestTvshows();
 
+        $scope.getLatestTvshows();
 
     }]);

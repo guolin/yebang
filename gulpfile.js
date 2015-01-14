@@ -43,7 +43,14 @@ gulp.task('server', function () {
                 var options = url.parse('http://eye.kuyun.com/api');
                 options.route = '/api';
                 return proxy(options);
-            })()];
+            })(),
+                (function () {
+                    var url = require('url');
+                    var proxy = require('proxy-middleware');
+                    var options = url.parse('http://eye.lab.kuyun.com/api');
+                    options.route = '/labapi';
+                    return proxy(options);
+                })()];
         }
     });
 });
@@ -97,7 +104,14 @@ gulp.task('dist-server', function () {
                 var options = url.parse('http://eye.kuyun.com/api');
                 options.route = '/api';
                 return proxy(options);
-            })()];
+            })(),
+                (function () {
+                    var url = require('url');
+                    var proxy = require('proxy-middleware');
+                    var options = url.parse('http://eye.lab.kuyun.com/api');
+                    options.route = '/labapi';
+                    return proxy(options);
+                })()];
         }
     });
 });

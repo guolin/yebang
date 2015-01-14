@@ -6,48 +6,24 @@
 
     <!-- 首页 -->
     <li ui-sref-active="active">
-        <a ui-sref="app.default">
-            <i class="glyphicon glyphicon-stats icon text-primary-dker"></i>
-            <span class="font-bold">首页</span>
+        <a ui-sref="app.liveChannels">
+          <i class="fa fa-area-chart icon text-warning-dker"></i>
+          <span class="font-bold">实时关注度</span>
         </a>
     </li>
-
-    <!-- 电视台数据 -->
-    <li>
-        <a href class="auto">
-      <span class="pull-right text-muted">
-        <i class="fa fa-fw fa-angle-right text"></i>
-        <i class="fa fa-fw fa-angle-down text-active"></i>
-      </span>
-            <i class="fa fa-desktop icon text-right-dker"></i>
-            <span class="font-bold">电视台</span>
-        </a>
-        <ul class="nav nav-sub dk">
-            <li class="nav-sub-header">
-                <a href>
-                    <span>电视台数据</span>
-                </a>
-            </li>
-
-            <li ui-sref-active="active">
-                <a ui-sref="app.liveChannels">
-                    <span>实时关注度</span>
-                </a>
-            </li>
-
-            <li ui-sref-active="active">
-                <a ui-sref="app.channels">
-                    <span>历史关注度</span>
-                </a>
-            </li>
-
-            <li ui-sref-active="active">
-                <a ui-sref="app.tvshows">
-                    <span>节目排行榜</span>
-                </a>
-            </li>
-
-        </ul>
+    <!-- 历史 -->
+    <li ui-sref-active="active">
+      <a ui-sref="app.channels">
+        <i class="glyphicon glyphicon-stats icon text-primary-dker"></i>
+        <span class="font-bold">历史排行榜</span>
+      </a>
+    </li>
+    <!-- 首页 -->
+    <li ui-sref-active="active">
+      <a ui-sref="app.tvshows">
+        <i class="fa fa-desktop icon text-right-dker"></i>
+        <span class="font-bold">节目排行榜</span>
+      </a>
     </li>
 
 
@@ -147,12 +123,6 @@
         <a ui-sref="app.help">
             <i class="icon-question icon"></i>
             <span>说明文档</span>
-        </a>
-    </li>
-    <li>
-        <a ui-sref="app.about">
-            <i class="icon-info icon"></i>
-            <span>关于我们</span>
         </a>
     </li>
 </ul>

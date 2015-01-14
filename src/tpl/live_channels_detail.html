@@ -9,7 +9,10 @@
       <div class="row">
         <div class="col-sm-6 col-xs-12">
           <h1 class="m-n font-thin h3 text-black">{{channelName}}实时关注度</h1>
-          <small class="text-muted">当前时刻 {{currentDate}}</small>
+          <small class="text-muted">
+            {{currentDate}} {{currentTvshow}}<br />
+            关注度:{{currentRating}}% 市占比:{{currentShare}}%
+          </small>
         </div>
       </div>
     </div>
@@ -19,7 +22,7 @@
       <div class="row">
 
         <!-- 数据图 -->
-        <div class="col-md-12">
+        <div class="col-md-12 hide">
           <div class="row row-sm text-center">
             <div class="col-xs-6">
               <div class="panel padder-v item">
@@ -38,9 +41,8 @@
 
 
         <div class="col-md-12  no-padder-lg-xs">
-          <h4>实时关注度</h4>
           <div class="panel wrapper  no-padder-lg-xs">
-            <div class="btn-group">
+            <div class="btn-group" role="group">
               <button type="button" class="btn btn-default"
                       ng-class="{active:frequence === 'minutes'}"
                       ng-click="setFrequence('minutes')">最近60分
@@ -49,7 +51,7 @@
                       ng-class="{active:frequence === 'seconds'}"
                       ng-click="setFrequence('seconds')">最近60秒
               </button>
-              <button type="button" class="btn btn-default"
+              <button type="button" class="btn btn-default hide"
                       ng-class="{active:frequence === 'pause'}"
                       ng-click="setFrequence('pause')"><i class="fa fa-pause"></i>
               </button>
@@ -64,18 +66,18 @@
       <!-- tasks -->
       <div class="row">
         <div class="col-md-6">
-          <h4>最近10档节目</h4>
+          <h4>最近5档节目</h4>
 
           <div class="list-group list-group-lg list-group-sp">
             <a herf class="list-group-item clearfix" ng-repeat="item in latestTvshows">
               <span class="pull-right ">
-                {{item.ssl | number:4}}%
+                {{item.ssl*100 | number:4}}%
               </span>
               <span class="clear">
-              <span>{{item.cd_name}}</span>
-              <small class="text-muted clear text-ellipsis">
-                {{item.start_time | kuDate}} ~ {{item.end_time | kuDate}}
-              </small>
+                <span>{{item.cd_name}}</span>
+                <small class="text-muted clear text-ellipsis">
+                  {{item.start_time}}
+                </small>
               </span>
             </a>
           </div>
@@ -84,7 +86,7 @@
         <div class="col-md-6">
           <h4>最近5条广告</h4>
 
-          <div ng-init="items = [1,2,3,4,5,6,7,8,9,0]" class="list-group list-group-lg list-group-sp">
+          <div ng-init="items = [1,2,3,4,5]" class="list-group list-group-lg list-group-sp">
             <a herf class="list-group-item clearfix" ng-repeat="item in items">
               <span class="pull-left thumb-md m-r">
               <img src="img/a4.jpg" alt="...">

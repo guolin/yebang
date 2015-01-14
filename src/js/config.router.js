@@ -17,7 +17,7 @@ angular.module('app')
         function ($stateProvider, $urlRouterProvider) {
 
             $urlRouterProvider
-                .otherwise('/app/default');
+                .otherwise('/app/livechannels');
 
             $stateProvider
                 .state('app', {

@@ -1,4 +1,5 @@
-app.controller('TvShowsTopCtrl', ['$scope','$http', function ($scope, $http) {
+app.controller('TvShowsTopCtrl', ['$scope','$http', '$timeout',
+    function ($scope, $http, $timeout) {
 
 
     $scope.clear = function () {
@@ -21,23 +22,48 @@ app.controller('TvShowsTopCtrl', ['$scope','$http', function ($scope, $http) {
         startingDay: 1,
         class: 'datepicker',
         datepicker: false,
-        'show-weeks': false
+        'show-weeks': false,
+        'min-date':moment("2014-10-01"),
+        'max-date':moment().subtract(1, 'days')
     };
     $scope.format = 'dd-MMMM-yyyy';
     $scope.dt = moment().subtract(1, 'days').format('YYYY-MM-DD');
-    $scope.reportType = 'whj';
-    $scope.reportTypes = {
-        'whj':'卫视黄金时段电视剧排行',
-        'wwj':'卫视晚间时段电视剧排行',
-        'wwzy': '卫视晚间时段综艺排行',
-        'wwjm':'卫视晚间时段节目排行'
+    $scope.reportTypes = [
+        {id:'1', name:'卫视黄金时段电视剧排行'},
+        {id:'2', name:'卫视晚间时段电视剧排行'},
+        {id:'3', name:'卫视晚间时段综艺排行'},
+        {id:'4', name:'卫视晚间时段节目排行'}
+    ];
+    $scope.reportType = $scope.reportTypes[0];
 
+    var refresh = function(){
+        var type = $scope.reportType.id.toString();
+        var dateString = moment($scope.dt).format('YYYY-MM-DD')
+        var url = 'labapi/epg_sort?type='+type+'&date='+dateString;
+        $('.butterbar').removeClass('hide').addClass('active');
+        $http.get(url).
+            success(function(data, status, headers, config) {
+                //@TODO 改API后删除这部分
+                var items = data.list;
+                var i;
+                for (i = 0; i < items.length; i++) {
+                    items[i].date = moment(items[i].start_time).format("MM-DD");
+                    items[i].start = moment(items[i].start_time).format("HH:mm");
+                    items[i].end = moment(items[i].end_time).format("HH:mm");
+                }
+                $scope.items = items;
+                $timeout(function () {
+                    $('.butterbar').removeClass('active').addClass('hide');
+                    $('.table').trigger('footable_initialize');
+                }, 500);
+            });
     };
+    refresh();
+    $scope.$watchGroup(['dt', 'reportType'], function () {
+        refresh();
+    });
 
-    $http.get('/fapi/tvshows_top1.json').
-        success(function(data, status, headers, config) {
-            $scope.items = data.results;
-        });
+
 
 }]);
 
@@ -50,7 +76,23 @@ app.controller('TvshowsCtrl', ['$scope', '$http',
                 '#1e90ff', '#ff6347', '#7b68ee', '#00fa9a', '#ffd700',
                 '#6699FF', '#ff6666', '#3cb371', '#b8860b', '#30e0e0'],
             tooltip: {
-                show: true
+                show: true,
+                trigger: 'axis',
+                formatter: function (params,ticket,callback) {
+                    p = params;
+                    var res = params[0];
+                    console.log(res);
+                    setTimeout(function(){
+                        callback(ticket, '<img src="http://c.hiphotos.baidu.com/news/crop%3D0%2C16%2C1136%2C682%3Bw%3D638/sign=81b3404816ce36d3b64bd97007c316b6/faf2b2119313b07e1086ec9a0fd7912397dd8c6d.jpg" >');
+                    }, 1000);
+                    return res;
+                },
+                position : function(p) {
+                    // 位置回调
+                    //console.log && console.log(p);
+                    return [p[0] + 40, p[1] - 40];
+                    //return [0, 0]
+                }
             },
 
             toolbox: {
@@ -243,11 +285,16 @@ app.controller('TvshowsCtrl', ['$scope', '$http',
         };
 
         $scope.getItems = function(){
+            $('.butterbar').removeClass('hide').addClass('avtive');
             $http.get('/fapi/tvshows.json').success(function (data) {
                     $scope.items = data.results;
+                    $timeout(function () {
+                        $('.butterbar').removeClass('active').addClass('hide');
+                    }, 500);
                 }
             )
         };
+
         $scope.getItems();
 
     }]);

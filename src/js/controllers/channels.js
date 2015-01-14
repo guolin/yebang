@@ -1,9 +1,8 @@
 app.controller('ChannelsTopCtrl', ['$scope', '$http', '$timeout',
     function ($scope, $http, $timeout) {
-        $scope.open = function($event) {
+        $scope.open = function ($event) {
             $event.preventDefault();
             $event.stopPropagation();
-
             $scope.opened = true;
         };
 
@@ -12,7 +11,9 @@ app.controller('ChannelsTopCtrl', ['$scope', '$http', '$timeout',
             startingDay: 1,
             class: 'datepicker',
             datepicker: false,
-            'show-weeks': false
+            'show-weeks': false,
+            'min-date': moment("2014-10-01"),
+            'max-date': moment().subtract(1, 'days')
         };
         $scope.dt = moment().subtract(1, 'days').format('YYYY-MM-DD');
 
@@ -38,156 +39,291 @@ app.controller('ChannelsTopCtrl', ['$scope', '$http', '$timeout',
         };
         $scope.refresh();
 
-        $scope.$watchGroup(['dt','tvType'], function (newValue, oldValue) {
+        $scope.$watchGroup(['dt', 'tvType'], function (newValue, oldValue) {
             $scope.refresh();
         });
 
 
     }]);
 
-app.controller('ChannelCtrl', ['$scope', '$http','$stateParams',
-    function($scope, $http, $stateParams){
+app.controller('ChannelCtrl', ['$scope', '$http', '$stateParams', "$timeout","$rootScope",
+    function ($scope, $http, $stateParams, $timeout, $rootScope) {
 
-        $scope.cid = $stateParams.id
+        $scope.cid = $stateParams.id;
+        cs = $rootScope.channelIDs;
+        c = $rootScope.channels;
+        $scope.cName = $rootScope.channelIDs[$scope.cid].name;
+
         $scope.dateOptions = {
             formatYear: 'yy',
             startingDay: 1,
             class: 'datepicker',
             datepicker: false,
-            'show-weeks': false
+            'show-weeks': false,
+            'min-date': moment("2014-10-01"),
+            'max-date': moment().subtract(1, 'days')
         };
-        $scope.format = 'dd-MMMM-yyyy';
         $scope.daterangeCustom = false;
 
-        $scope.today = function(){
+        $scope.today = function () {
             $scope.from = moment().format('YYYY-MM-DD');
             $scope.to = $scope.from;
-            $scope.daterangeType = 'today';
         };
-        $scope.yesterday = function(){
+        $scope.yesterday = function () {
             $scope.from = moment().subtract(1, 'days').format('YYYY-MM-DD');
             $scope.to = $scope.from;
-            $scope.daterangeType = 'yesterday';
         };
-        $scope.before7days = function(){
+        $scope.before7days = function () {
             $scope.from = moment().subtract(8, 'days').format('YYYY-MM-DD');
             $scope.to = moment().subtract(1, 'days').format('YYYY-MM-DD');
-            $scope.daterangeType = 'before7days';
         };
-        $scope.before30days = function(){
+        $scope.before30days = function () {
             $scope.from = moment().subtract(31, 'days').format('YYYY-MM-DD');
             $scope.to = moment().subtract(1, 'days').format('YYYY-MM-DD');
-            $scope.daterangeType = 'before30days';
         };
 
+        $scope.dataFormat = 'hh:mm:ss';
 
-        var getOption = function (categories, rating, share) {
+        var getOption = function (categories, rating, share, vsRating) {
 
             var option = {
-                color: ['#23b7e5','#27c24c','#fad733','#7266ba',
-                    '#f05050','#e8eff0','#3a3f51','#1c2b36','#40e0d0',
-                    '#1e90ff','#ff6347','#7b68ee','#00fa9a','#ffd700',
-                    '#6699FF','#ff6666','#3cb371','#b8860b','#30e0e0'],
+                color: ['#23b7e5', '#27c24c', '#fad733', '#7266ba',
+                    '#f05050', '#e8eff0', '#3a3f51', '#1c2b36', '#40e0d0',
+                    '#1e90ff', '#ff6347', '#7b68ee', '#00fa9a', '#ffd700',
+                    '#6699FF', '#ff6666', '#3cb371', '#b8860b', '#30e0e0'],
                 animation: false,
-                dataZoom : {
-                    show : true,
-                    realtime : true,
-                    start : 0,
-                    end : 100
+                dataZoom: {
+                    show: true,
+                    realtime: true,
+                    start: 0,
+                    end: 100
                 },
                 legend: {
-                    data:['关注度','市占比'],
+                    data: ['关注度', '市占比'],
                     x: 'left'
                 },
-                tooltip : {
-                    trigger: 'axis'
-                },
-                grid:{
-                    borderColor:'#ccc',
-                    borderWidth:0,
-                    x:'0',y:'25',y2:'60',x2:'50'
-                },
-                xAxis : [
-                    {
-                        type : 'category',
-                        boundaryGap : false,
-                        data : categories,
-                        axisLabel:{textStyle:{color:'#ccc'}},
-                        axisTick:{show:false},
-                        splitLine:{lineStyle:{color: ['#ccc'], width: 1, type: 'solid'}}
-                    }
-                ],
-                yAxis : [
-                    {
-                        splitNumber:2,
-                        scale: true,
-                        position: 'right',
-                        type : 'value',
-                        axisLabel:{margin:6, textStyle:{color:'#ccc'}},
-                        axisTick:{show:false},axisLine:{show:false}
-                    }
-                ],
-                series : [
-                    {
-                        name:'关注度',
-                        type:'line',
-                        smooth:true,
-                        itemStyle: {normal: {areaStyle: {type: 'default'}}},
-                        data:rating
+                tooltip: {
+                    trigger: 'axis',
+                    position: function (p) {
+                        return [p[0] + 10, 20];
                     },
-                    {
-                        name:'市占比',
-                        show:false,
-                        type:'line',
-                        smooth:true,
-                        itemStyle: {normal: {areaStyle: {type: 'default'}}},
-                        data:share
+                    formatter:function (params, ticket, callback) {
+                        p = params;
+                        var date = moment(params[0][1], 'YYYYMMDDhhmmss').format($scope.dataFormat);
+                        var p1 = params[0][0]+": "+params[0][2]+"%";
+                        var res = [date, p1];
+                        if(params.length > 1){
+                            var p2 = params[1][0]+": "+params[1][2]+"%";
+                            res.push(p2)
+                        }
+                        return res.join("<br />");
                     }
-                ]
+                },
+                grid: {
+                    borderColor: '#ccc',
+                    borderWidth: 1,
+                    x: '2', y: '30', y2: '60', x2: '2'
+                },
+                xAxis: [
+                    {
+                        type: 'category',
+                        boundaryGap: false,
+                        data: categories,
+                        axisTick: {show: false},
+                        splitLine: {lineStyle: {color: ['#ccc'], width: 1, type: 'solid'}},
+                        axisLabel: {
+                            textStyle: {color: '#ccc'},
+                            formatter: function (value) {
+                                var result = moment(value, 'YYYYMMDDhhmmss').format($scope.dataFormat);
+                                return result;
+                            }
+                        }
+                    }
+                ],
+                yAxis: [
+                    {
+                        splitNumber: 2,
+                        scale: true,
+                        position: 'left',
+                        type: 'value',
+                        axisLabel: {
+                            margin: -40, textStyle: {color: '#bbb'},
+                            formatter: '{value}%'
+                        },
+                        axisTick: {show: false}, axisLine: {show: false}
+
+                    }
+                ],
+                series: []
             };
+            var ratingData = {
+                name: '关注度',
+                type: 'line',
+                smooth: true,
+                itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                data: rating
+            };
+
+            var shareData = {
+                name: '市占比',
+                type: 'line',
+                smooth: true,
+                itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                data: share
+            };
+            if (!vsRating) {
+                option.series.push(ratingData);
+                option.series.push(shareData);
+            } else {
+                var vsRatingData = {
+                    name: $scope.vsName,
+                    type: 'line',
+                    smooth: true,
+                    itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                    data: vsRating
+                };
+                ratingData.name = $scope.cName;
+                option.series.push(ratingData);
+                option.series.push(vsRatingData);
+                option.legend.data = [$scope.cName,$scope.vsName]
+            }
+            o = option;
+
             return option;
         };
 
-        $scope.refresh = function(){
+        var getVSData = function (callback) {
             var from = moment($scope.from).format('YYYY-MM-DD');
             var to = moment($scope.to).format('YYYY-MM-DD');
-            $http.get('/api/ratings_history?tv_id='+$scope.cid+'&start_ds='+from+'&end_ds='+to).
+            vv = $scope.vsid;
+
+            var vsid = $scope.vsid.id;
+
+            $http.get('/api/ratings_history?tv_id=' + vsid + '&start_ds=' + from + '&end_ds=' + to).
                 success(function (data, status, headers, config) {
-                    if(data.code !== 0) return;
+
+                    if (data.code !== 0) return;
+                    var ps = data.result.list;
+                    var r = [];
+                    for (var i = 0; i < ps.length; i++) {
+                        r.push(ps[i].tv_ratings);
+                    }
+                    $scope.vsName = $rootScope.channelIDs[vsid].name;
+                    callback(r);
+                });
+        };
+
+        $scope.refresh = function () {
+            var from = moment($scope.from).format('YYYY-MM-DD');
+            var to = moment($scope.to).format('YYYY-MM-DD');
+
+            $('.butterbar').removeClass('hide').addClass('active');
+            $http.get('/api/ratings_history?tv_id=' + $scope.cid + '&start_ds=' + from + '&end_ds=' + to).
+                success(function (data, status, headers, config) {
+                    // butterbar
+                    $timeout(function () {
+                        $('.butterbar').removeClass('active').addClass('hide');
+                    }, 500);
+                    if (data.code !== 0) return;
                     $scope.avgRating = data.result.avg_tv_ratings;
                     $scope.avgShare = data.result.avg_market_ratings;
                     var ps = data.result.list;
                     var c = [];
                     var r = [];
                     var s = [];
-                    for(var i = 0; i< ps.length; i++) {
-                        var pattern = /(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})/;
-                        var dateString = ps[i].timestamp.replace(pattern, '$1-$2-$3 $4:$5:$6');
-                        var date = new Date(dateString);
-                        c.push(moment(date).format('HH:mm:ss'));
+                    for (var i = 0; i < ps.length; i++) {
+                        c.push(ps[i].timestamp);
                         r.push(ps[i].tv_ratings);
                         s.push(ps[i].market_ratings);
-
                     }
-                    $scope.option = getOption(c,r,s);
+                    if (data.result.unit === '分钟') {
+                        $scope.dataFormat = 'HH:mm';
+                    } else if (data.result.unit === '小时') {
+                        $scope.dataFormat = 'MM-DD HH:mm';
+                    } else {
+                        $scope.dataFormat = 'MM-DD';
+                    }
+
+
+                    if ($scope.vsid !== '') {
+                        getVSData(function (vs) {
+                            $scope.option = getOption(c, r, s, vs);
+                        })
+                    } else {
+                        $scope.option = getOption(c, r, s);
+                    }
+
+
                 });
         };
 
-        $scope.getEpgItems = function(){
-            $http.get('api/ratings_epg_history?tv_id='+$scope.cid+'&start_ds=2015-01-11&end_ds=2015-01-11&page_no=1&page_size=65').
-                success(function(data){
-                    $scope.items = data.result.list;
+        $scope.getEpgItems = function () {
+            var from = moment($scope.from).format('YYYY-MM-DD');
+            var to = moment($scope.to).format('YYYY-MM-DD');
+            $http.get('api/ratings_epg_history?tv_id=' + $scope.cid + '&start_ds=' + from + '&end_ds=' + to + '&page_no=1&page_size=65').
+                success(function (data) {
+                    //@TODO 修改API后去掉这部分
+                    var items = data.result.list;
+                    var i;
+                    for (i = 0; i < items.length; i++) {
+                        items[i].date = moment(items[i].start_time).format("MM-DD");
+                        items[i].start = moment(items[i].start_time).format("HH:mm");
+                        items[i].end = moment(items[i].end_time).format("HH:mm");
+                    }
+                    $scope.items = items;
+                    setTimeout(function(){
+                        $('.table').trigger('footable_initialize');
+                    },500);
+
                 });
         }
+
+        $scope.updateDateRange = function () {
+            var from = moment($scope.from);
+            var to = moment($scope.to);
+
+            var today = moment();
+            var yesterday = moment().subtract(1, 'days');
+            var before7 = moment().subtract(8, 'days');
+            var before30 = moment().subtract(31, 'days');
+
+            if (from.isSame(to, 'day')) {
+                if (from.isSame(today, 'day')) {
+                    $scope.daterangeType = 'today';
+                    return;
+                }
+                if (from.isSame(yesterday, 'day')) {
+                    $scope.daterangeType = 'yesterday';
+                    return;
+                }
+            }
+            if (to.isSame(yesterday, 'day')) {
+                if (from.isSame(before7, 'day')) {
+                    $scope.daterangeType = 'before7days';
+                    return;
+                }
+                if (from.isSame(before30, 'day')) {
+                    $scope.daterangeType = 'before30days';
+                    return;
+                }
+            }
+
+            $scope.daterangeType = '';
+            $scope.daterangeCustom = true;
+            console.log($scope.daterangeType);
+
+        };
 
         $scope.yesterday();
         $scope.refresh();
         $scope.getEpgItems();
+        $scope.updateDateRange();
 
-        $scope.$watchGroup(['from','to'], function (newValue, oldValue) {
+        $scope.$watchGroup(['from', 'to', 'vsid'], function (newValue, oldValue) {
             $scope.refresh();
+            $scope.getEpgItems();
+            $scope.updateDateRange();
+
         });
-
-
 
     }]);

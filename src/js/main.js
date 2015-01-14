@@ -3,8 +3,8 @@
 /* Controllers */
 
 angular.module('app')
-    .controller('AppCtrl', ['$scope', '$translate', '$localStorage', '$window',
-        function ($scope, $translate, $localStorage, $window) {
+    .controller('AppCtrl', ['$scope', '$rootScope', '$http', '$window',
+        function ($scope, $rootScope, $http, $window) {
             // add 'ie' classes to html
             var isIE = !!navigator.userAgent.match(/MSIE/i);
             isIE && angular.element($window.document.body).addClass('ie');
@@ -36,22 +36,7 @@ angular.module('app')
                     asideDock: false,
                     container: false
                 }
-            }
-
-            // save settings to local storage
-            if (angular.isDefined($localStorage.settings)) {
-                $scope.app.settings = $localStorage.settings;
-            } else {
-                $localStorage.settings = $scope.app.settings;
-            }
-            $scope.$watch('app.settings', function () {
-                if ($scope.app.settings.asideDock && $scope.app.settings.asideFixed) {
-                    // aside dock and fixed must set the header fixed.
-                    $scope.app.settings.headerFixed = true;
-                }
-                // save to local storage
-                $localStorage.settings = $scope.app.settings;
-            }, true);
+            };
 
             function isSmartDevice($window) {
                 // Adapted from http://www.detectmobilebrowsers.com
@@ -66,10 +51,24 @@ angular.module('app')
                 }else{
                     return true;
                 }
-            }
+            };
 
-
-
-
+            $rootScope.getChannels = function(){
+                $http.get('/fapi/channels.json').
+                    success(function(data){
+                        var i;
+                        var channels = {};
+                        for(i=0 ; i < data.length; i++){
+                            channels[data[i].id] = {
+                                id : data[i].id,
+                                name : data[i].name,
+                                type : data[i].type
+                            }
+                        }
+                        $rootScope.channelIDs = channels;
+                        $rootScope.channels = data;
+                    });
+            };
+            $rootScope.getChannels();
         }]);
 
