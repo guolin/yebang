@@ -239,3 +239,58 @@ angular.module('cgBusy').directive('cgBusy',['$compile','$templateCache','cgBusy
     }
 ]);
 
+
+angular.module('cgBusy').run(['$templateCache', function($templateCache) {
+  'use strict';
+
+  $templateCache.put('angular-busy.html',
+    "<div class=\"cg-busy-default-wrapper\">\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "   <div class=\"cg-busy-default-sign\">\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "      <div class=\"cg-busy-default-spinner\">\r" +
+    "\n" +
+    "         <div class=\"bar1\"></div>\r" +
+    "\n" +
+    "         <div class=\"bar2\"></div>\r" +
+    "\n" +
+    "         <div class=\"bar3\"></div>\r" +
+    "\n" +
+    "         <div class=\"bar4\"></div>\r" +
+    "\n" +
+    "         <div class=\"bar5\"></div>\r" +
+    "\n" +
+    "         <div class=\"bar6\"></div>\r" +
+    "\n" +
+    "         <div class=\"bar7\"></div>\r" +
+    "\n" +
+    "         <div class=\"bar8\"></div>\r" +
+    "\n" +
+    "         <div class=\"bar9\"></div>\r" +
+    "\n" +
+    "         <div class=\"bar10\"></div>\r" +
+    "\n" +
+    "         <div class=\"bar11\"></div>\r" +
+    "\n" +
+    "         <div class=\"bar12\"></div>\r" +
+    "\n" +
+    "      </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "      <div class=\"cg-busy-default-text\">{{$message}}</div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "   </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "</div>"
+  );
+
+}]);
