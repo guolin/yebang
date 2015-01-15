@@ -60,8 +60,7 @@
 
           <!--数据选择-->
           <div ng-class="{hide:!tvid}">
-          <div class="col-md-12">
-            <div class="pull-left padder" style="padding-top: 40px">从</div>
+          <div class="col-md-12 clear">
             <div class="pull-left">
               <timepicker ng-model="start"
                           hour-step="1" minute-step="1"
@@ -76,7 +75,7 @@
 
             </div>
             <div class="pull-left padder" style="padding-top: 34px">
-              <button class="btn  btn-primary" ng-click="getItems()">确定</button>
+              <button class="btn  btn-primary" ng-click="getItems()" type="submit">确定</button>
             </div>
           </div>
 
