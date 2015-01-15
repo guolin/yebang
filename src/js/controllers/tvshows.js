@@ -29,10 +29,10 @@ app.controller('TvShowsTopCtrl', ['$scope','$http', '$timeout',
     $scope.format = 'dd-MMMM-yyyy';
     $scope.dt = moment().subtract(1, 'days').format('YYYY-MM-DD');
     $scope.reportTypes = [
-        {id:'1', name:'黄金时段电视剧排行(17:30~22:00)'},
+        {id:'1', name:'黄金时段电视剧排行(19:30~22:00)'},
         {id:'2', name:'晚间电视剧排行(22:00~24:00)'},
-        {id:'3', name:'卫视晚间时段综艺排行(17:30~24:00)'},
-        {id:'4', name:'卫视晚间时段节目排行(17:30~24:00)'}
+        {id:'3', name:'卫视晚间时段综艺排行(19:30~24:00)'},
+        {id:'4', name:'卫视晚间时段节目排行(19:30~24:00)'}
     ];
     $scope.reportType = $scope.reportTypes[0];
 
