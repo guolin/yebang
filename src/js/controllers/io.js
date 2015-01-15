@@ -2,6 +2,9 @@
 app.controller('IOCtrl', ['$scope', '$http','$stateParams',
     function ($scope, $http, $stateParams) {
 
+        $scope.start = moment().subtract(30,'minutes');
+        $scope.end = moment();
+
         $scope.open = function ($event) {
             $event.preventDefault();
             $event.stopPropagation();
