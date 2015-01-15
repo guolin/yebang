@@ -52,13 +52,13 @@
         <div class="col-md-12 m-b-sm no-padder-lg-xs">
         <div class="pull-left no-padder-lg-xs">
           <timepicker ng-model="start"
-                      hour-step="1" minute-step="1"
+                      hour-step="1" minute-step="5"
                       show-meridian="ismeridian"></timepicker>
         </div>
         <div class="pull-left padder no-padder-lg-xs" style="padding-top: 40px">到</div>
         <div class="pull-left">
           <timepicker ng-model="end"
-                      hour-step="1" minute-step="1"
+                      hour-step="1" minute-step="5"
                       show-meridian="ismeridian"></timepicker>
 
         </div>
@@ -69,7 +69,7 @@
       </div>
 
       <!--表格-->
-      <div class="row">
+      <div class="row" ng-class="{hide:!tvid}">
         <div class="col-md-12 no-padder-lg-xs ">
 
           <div class="panel panel-heading" ng-class="{hide:!total}">
@@ -82,7 +82,7 @@
             <div cg-busy="{promise:ioPromise,message:'加载中...'}"
                  class="no-padder-lg-xs">
 
-              <table class="table" ui-jq="footable" data-page-size="30">
+              <table class="table" ui-jq="footable"  data-sort="false" data-page-size="30">
                 <thead class="">
                 <tr>
                   <th data-toggle="true">名称</th>
