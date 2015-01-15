@@ -150,7 +150,7 @@ app.controller('TvshowsCtrl', ['$scope', '$http','$stateParams',
 
                     $scope.option = getOption(c, v);
                     // butterbar
-                    $timeout(function () {
+                    setTimeout(function () {
                         $('.butterbar').removeClass('active').addClass('hide');
                     }, 500);
                 });

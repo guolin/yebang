@@ -1,6 +1,7 @@
 
 app.controller('IOCtrl', ['$scope', '$http','$stateParams',
     function ($scope, $http, $stateParams) {
+
         $scope.open = function ($event) {
             $event.preventDefault();
             $event.stopPropagation();
@@ -17,40 +18,26 @@ app.controller('IOCtrl', ['$scope', '$http','$stateParams',
             'max-date': moment().subtract(1, 'days')
         };
 
-        $scope.dt = moment().subtract(1, 'days').format('YYYY-MM-DD');
+        $scope.dt = moment().subtract(1, 'days').format('YYYY-MM-DD')
 
         var getOption = function (categories, rating) {
 
             var option = {
                 color: ['#23b7e5', '#27c24c'],
-                dataZoom: {
-                    show: true,
-                    realtime: true,
-                    height:60,
-                    start: 0,
-                    end: 100
-                },
                 tooltip: {
-                    trigger: 'axis',
-                    position: function (p) {
-                        return [p[0] + 10, 20];
-                    },
-                    formatter:function (params, ticket, callback) {
-                        p = params;
-                        var date = moment(params[0][1], 'YYYYMMDDhhmmss').format($scope.dataFormat);
-                        var p1 = params[0][0]+": "+params[0][2]+"%";
-                        var res = [date, p1];
-                        if(params.length > 1){
-                            var p2 = params[1][0]+": "+params[1][2]+"%";
-                            res.push(p2)
-                        }
-                        return res.join("<br />");
-                    }
+                    trigger: 'axis'
+                },
+                animation:false,
+                dataZoom : {
+                    show : true,
+                    realtime : true,
+                    start : 0,
+                    end : 100
                 },
                 grid: {
                     borderColor: '#ccc',
                     borderWidth: 1,
-                    x: '2', y: '0', y2: '60', x2: '2'
+                    x: '2', y: '10', y2: '60', x2: '2'
                 },
                 xAxis: [
                     {
@@ -59,13 +46,7 @@ app.controller('IOCtrl', ['$scope', '$http','$stateParams',
                         data: categories,
                         axisTick: {show: false},
                         splitLine: {lineStyle: {color: ['#ccc'], width: 1, type: 'solid'}},
-                        axisLabel: {
-                            textStyle: {color: '#ccc'},
-                            formatter: function (value) {
-                                var result = moment(value, 'YYYYMMDDhhmmss').format($scope.dataFormat);
-                                return result;
-                            }
-                        }
+                        axisLabel: {textStyle: {color: '#ccc'}}
                     }
                 ],
                 yAxis: [
@@ -100,7 +81,7 @@ app.controller('IOCtrl', ['$scope', '$http','$stateParams',
             var tvidString = $scope.tvid.id;
 
             $('.butterbar').removeClass('hide').addClass('active');
-            $http.get('/api/ratings_history?tv_id=' + tvidString + '&start_ds=' + dtString + '&end_ds=' + dtString).
+            $scope.myPromise = $http.get('/api/ratings_history?tv_id=' + tvidString + '&start_ds=' + dtString + '&end_ds=' + dtString).
                 success(function (data, status, headers, config) {
 
                     var ps = data.result.list;
@@ -108,11 +89,10 @@ app.controller('IOCtrl', ['$scope', '$http','$stateParams',
                     var r = [];
                     var s = [];
                     for (var i = 0; i < ps.length; i++) {
-                        c.push(ps[i].timestamp);
+                        c.push(moment(ps[i].timestamp, 'YYYYMMDDHHmmss').format('HH:mm'));
                         r.push(ps[i].tv_ratings);
-                        s.push(ps[i].market_ratings);
                     }
-                    $scope.option = getOption(c, r, s);
+                    $scope.option = getOption(c, r);
                     // butterbar
                     setTimeout(function () {
                         $('.butterbar').removeClass('active').addClass('hide');
@@ -126,21 +106,19 @@ app.controller('IOCtrl', ['$scope', '$http','$stateParams',
             end = date+moment($scope.end).format('HH:mm:ss');
             var tvidString = $scope.tvid.id;
 
-
-            $('.butterbar').removeClass('hide').addClass('avtive');
-            $http.get('/labapi/tv_io2?tv_id='+tvidString+'&start_time='+start+'&end_time='+end).
+            $scope.ioPromise = $http.get('/labapi/tv_io?tv_id='+tvidString+'&start_time='+start+'&end_time='+end).
                 success(function (data) {
                     $scope.items = data.result.list;
                     $scope.total = data.result.total;
+                    $scope.startRating = data.result.start_ssl;
+                    $scope.endRating = data.result.end_ssl;
 
                     setTimeout(function () {
-                        $('.butterbar').removeClass('active').addClass('hide');
                         $('.table').trigger('footable_initialize');
                     }, 500);
                 }
             )
         };
-
 
         $scope.$watchGroup(['dt', 'tvid'], function () {
             if($scope.tvid != ''){
