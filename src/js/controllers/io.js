@@ -113,8 +113,10 @@ app.controller('IOCtrl', ['$scope', '$http','$stateParams',
                 success(function (data) {
                     $scope.items = data.result.list;
                     $scope.total = data.result.total;
+                    $scope.total.abs = $scope.total.in - $scope.total.out;
                     $scope.startRating = data.result.start_ssl;
                     $scope.endRating = data.result.end_ssl;
+
 
                     setTimeout(function () {
                         $('.table').trigger('footable_initialize');

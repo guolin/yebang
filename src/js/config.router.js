@@ -111,6 +111,17 @@ angular.module('app')
                         ]
                     }
                 })
+                .state('app.tvshowRating', {
+                    url: '/tvshow/:showid',
+                    templateUrl: 'tpl/tvshow_rating.html',
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['js/controllers/tvshows.js']);
+                            }
+                        ]
+                    }
+                })
 
                 //流入流出
                 .state('app.io', {

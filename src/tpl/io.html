@@ -73,8 +73,8 @@
         <div class="col-md-12 no-padder-lg-xs ">
 
           <div class="panel panel-heading" ng-class="{hide:!total}">
-            关注度: {{startRating}}% - {{endRating}}% , 净值:
-            {{endRating-startRating|number:3}}%
+            关注度: {{startRating |number:4}}% - {{endRating |number:4 }}%, 净值:
+            {{(endRating-startRating)  |number:4}}%
           </div>
 
           <div class="panel panel-body col-md-12 no-padder-lg-xs">
@@ -95,21 +95,19 @@
                 <tbody>
                 <tr>
                   <td>汇总</td>
-                  <td>{{total.in|number:4}}%</td>
-                  <td>{{total.out|number:4}}%</td>
-                  <td>{{total.delta|number:4}}%</td>
+                  <td>{{total.in  |number:4}}%</td>
+                  <td>{{total.out  |number:4}}%</td>
+                  <td>{{total.delta  |number:4}}%</td>
                 </tr>
                 <tr ng-repeat="item in items">
                   <td>{{item.tv_name}}</td>
-                  <td>{{item.in|number:4}}%</td>
-                  <td>{{item.out|number:4}}%</td>
-                  <td>
-                    {{item.delta|number:4}}%
-                  </td>
+                  <td>{{item.in  |number:4}}%</td>
+                  <td>{{item.out  |number:4}}%</td>
+                  <td>{{item.delta |number:4}}</td>
                   <td>
                     <i class="fa"
                        ng-class="{'fa-arrow-up text-danger-dk':item.delta>0,'fa-arrow-down text-success-dk':item.delta<0}"></i>
-                    {{item.delta/total.delta*100|number:1}}%
+                    {{item.delta/total.delta * 100|number:2}}%
                   </td>
                 </tr>
                 </tbody>

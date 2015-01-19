@@ -11,8 +11,8 @@ angular.module('app')
 
 angular.module('app')
     .filter('kuDate', function () {
-        return function (date) {
+        return function (date, format) {
             var d = new Date(date);
-            return moment(d).format('HH:mm');
+            return moment(d).format(format);
         }
     });

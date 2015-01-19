@@ -159,11 +159,9 @@ app.controller('TvshowsCtrl', ['$scope', '$http','$stateParams',
 
 
         $scope.getItems = function(){
-            $('.butterbar').removeClass('hide').addClass('avtive');
             $http.get('/labapi/epg_detail?ca_id='+showid+'&page_size=150&type='+typeid).success(function (data) {
                     $scope.items = data.result.list;
                     setTimeout(function () {
-                        $('.butterbar').removeClass('active').addClass('hide');
                         $('.table').trigger('footable_initialize');
                     }, 500);
                 }
@@ -174,5 +172,30 @@ app.controller('TvshowsCtrl', ['$scope', '$http','$stateParams',
         $scope.getItems();
 
 
+
+    }]);
+
+app.controller('TvShowRatingCtrl', ['$scope', '$http','$stateParams',
+    function ($scope, $http, $stateParams) {
+        var showid = $stateParams.showid;
+
+        $scope.getItems = function(){
+            $scope.ioPromise = $http.get('/api/rating_province?epg_id='+showid).success(function (data) {
+                    var items = [];
+                    var i;
+                    var keys =  Object.keys(data);
+                    for(i = 0;i < keys.length; i++){
+                        var k = keys[i];
+                        var v = data[k];
+                        items.push({name:k,rating:v});
+                    }
+                    $scope.items = items;
+                    setTimeout(function () {
+                        $('.table').trigger('footable_initialize');
+                    }, 500);
+                }
+            )
+        };
+        $scope.getItems();
 
     }]);

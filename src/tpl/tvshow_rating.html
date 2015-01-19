@@ -1,0 +1,36 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">节目分地区收视率</h1>
+</div>
+
+<div class="wrapper" ng-controller="TvShowRatingCtrl">
+  <div class="row">
+    <div class="col-md-12  no-padder-lg-xs">
+      <div class="panel panel-default  no-padder-lg-xs">
+        <div class="panel-heading hide">节目名称</div>
+        <div class="table-responsive" cg-busy="{promise:ioPromise,message:'加载中...'}">
+          <table class="table table-striped b-t b-light" data-page-size="100" ui-jq="footable" >
+            <thead>
+            <tr>
+              <th data-toggle="phone">地区</th>
+              <th data-sort-initial="descending">收视率</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in items ">
+              <td>{{item.name}}</td>
+              <td>{{item.rating*100|number:4}}%</td>
+            </tr>
+            </tbody>
+            <tfoot class="hide-if-no-paging">
+            <tr>
+              <td colspan="5" class="text-center">
+                <ul class="pagination"></ul>
+              </td>
+            </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
