@@ -170,7 +170,7 @@ app.controller('TvShowRatingCtrl', ['$scope', '$http','$stateParams','kuTVShows'
         $scope.getItems = function(){
             $scope.ioPromise = kuTVShows.getGeo(showid);
             $scope.ioPromise.then(function (p) {
-                var data = p;
+                var data = p.data;
                 var items = [];
                 var i;
                 var keys =  Object.keys(data);
