@@ -12,7 +12,17 @@ angular.module('app')
 angular.module('app')
     .filter('kuDate', function () {
         return function (date, format) {
-            var d = new Date(date);
-            return moment(d).format(format);
+            return moment(date).format(format);
+        }
+    });
+
+angular.module('app')
+    .filter('dataFormat', function () {
+        return function (date, format) {
+            if(" ".indexOf(date)){
+                return moment(date).format(format);
+            }else{
+                return moment(date,'YYYYMMDDHHmmss').format(format);
+            }
         }
     });

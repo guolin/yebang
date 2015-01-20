@@ -1,11 +1,11 @@
-app.controller('ChannelsTopCtrl', ['$scope', '$http', '$timeout',
-    function ($scope, $http, $timeout) {
+app.controller('ChannelsTopCtrl', ['$scope', '$http', '$timeout', 'kuChannels',
+    function ($scope, $http, $timeout,kuChannels) {
+
         $scope.open = function ($event) {
             $event.preventDefault();
             $event.stopPropagation();
             $scope.opened = true;
         };
-
         $scope.dateOptions = {
             formatYear: 'yy',
             startingDay: 1,
@@ -25,29 +25,24 @@ app.controller('ChannelsTopCtrl', ['$scope', '$http', '$timeout',
         };
         $scope.tvType = '00';
 
-        $scope.refresh = function () {
-            var dt = $scope.dt;
-            var dts = moment(dt).format('YYYY-MM-DD');
-            $('.butterbar').removeClass('hide').addClass('active');
-            $http.get('/api/tv_ratings_rank?type=' + $scope.tvType + '&start_ds=' + dts + '&end_ds=' + dts).
-                success(function (data, status, headers, config) {
-                    $scope.items = data.result;
-                    $timeout(function () {
-                        $('.butterbar').removeClass('active').addClass('hide');
-                    }, 500);
-                });
+        var refresh = function(){
+            $scope.promise = kuChannels.getTopChannels($scope.dt, $scope.tvType);
+            $scope.promise.then(function(p){
+                $scope.items = p.data.result;
+            });
         };
-        $scope.refresh();
 
+
+        refresh();
         $scope.$watchGroup(['dt', 'tvType'], function (newValue, oldValue) {
-            $scope.refresh();
+            refresh();
         });
 
 
     }]);
 
-app.controller('ChannelCtrl', ['$scope', '$http', '$stateParams', "$timeout","$rootScope",
-    function ($scope, $http, $stateParams, $timeout, $rootScope) {
+app.controller('ChannelCtrl', ['$scope', '$http', '$stateParams', "$timeout","$rootScope",'kuChannels',
+    function ($scope, $http, $stateParams, $timeout, $rootScope,kuChannels) {
 
         $scope.cid = $stateParams.id;
         cs = $rootScope.channelIDs;
@@ -151,7 +146,6 @@ app.controller('ChannelCtrl', ['$scope', '$http', '$stateParams', "$timeout","$r
                             formatter: '{value}%'
                         },
                         axisTick: {show: false}, axisLine: {show: false}
-
                     }
                 ],
                 series: []
@@ -199,71 +193,64 @@ app.controller('ChannelCtrl', ['$scope', '$http', '$stateParams', "$timeout","$r
 
             var vsid = $scope.vsid.id;
 
-            $http.get('/api/ratings_history?tv_id=' + vsid + '&start_ds=' + from + '&end_ds=' + to).
-                success(function (data, status, headers, config) {
+            var p = kuChannels.getRating($scope.from, $scope.to, $scope.vsid.id);
+            p.then(function (p) {
+                var data = p.data;
 
-                    if (data.code !== 0) return;
-                    var ps = data.result.list;
-                    var r = [];
-                    for (var i = 0; i < ps.length; i++) {
-                        r.push(ps[i].tv_ratings);
-                    }
-                    $scope.vsName = $rootScope.channelIDs[vsid].name;
-                    callback(r);
-                });
+                if (data.code !== 0) return;
+                var ps = data.result.list;
+                var r = [];
+                for (var i = 0; i < ps.length; i++) {
+                    r.push(ps[i].tv_ratings);
+                }
+                $scope.vsName = $rootScope.channelIDs[vsid].name;
+                callback(r);
+            });
         };
 
         $scope.refresh = function () {
-            var from = moment($scope.from).format('YYYY-MM-DD');
-            var to = moment($scope.to).format('YYYY-MM-DD');
+            var p = kuChannels.getRating($scope.from,$scope.to,$scope.cid);
+            p.then(function (f) {
+                var data = f.data;
 
-            $('.butterbar').removeClass('hide').addClass('active');
-            $http.get('/api/ratings_history?tv_id=' + $scope.cid + '&start_ds=' + from + '&end_ds=' + to).
-                success(function (data, status, headers, config) {
-                    // butterbar
-                    $timeout(function () {
-                        $('.butterbar').removeClass('active').addClass('hide');
-                    }, 500);
-                    if (data.code !== 0) return;
-                    $scope.avgRating = data.result.avg_tv_ratings;
-                    $scope.avgShare = data.result.avg_market_ratings;
-                    var ps = data.result.list;
-                    var c = [];
-                    var r = [];
-                    var s = [];
-                    for (var i = 0; i < ps.length; i++) {
-                        c.push(ps[i].timestamp);
-                        r.push(ps[i].tv_ratings);
-                        s.push(ps[i].market_ratings);
-                    }
-                    if (data.result.unit === '分钟') {
-                        $scope.dataFormat = 'HH:mm';
-                    } else if (data.result.unit === '小时') {
-                        $scope.dataFormat = 'MM-DD HH:mm';
-                    } else {
-                        $scope.dataFormat = 'MM-DD';
-                    }
+                if (data.code !== 0) return;
+                $scope.avgRating = data.result.avg_tv_ratings;
+                $scope.avgShare = data.result.avg_market_ratings;
+                var ps = data.result.list;
+                var c = [];
+                var r = [];
+                var s = [];
+                for (var i = 0; i < ps.length; i++) {
+                    c.push(ps[i].timestamp);
+                    r.push(ps[i].tv_ratings);
+                    s.push(ps[i].market_ratings);
+                }
+                if (data.result.unit === '分钟') {
+                    $scope.dataFormat = 'HH:mm';
+                } else if (data.result.unit === '小时') {
+                    $scope.dataFormat = 'MM-DD HH:mm';
+                } else {
+                    $scope.dataFormat = 'MM-DD';
+                }
 
 
-                    if ($scope.vsid !== '') {
-                        getVSData(function (vs) {
-                            $scope.option = getOption(c, r, s, vs);
-                        })
-                    } else {
-                        $scope.option = getOption(c, r, s);
-                    }
+                if ($scope.vsid !== '') {
+                    getVSData(function (vs) {
+                        $scope.option = getOption(c, r, s, vs);
+                    })
+                } else {
+                    $scope.option = getOption(c, r, s);
+                }
 
 
-                });
+            });
         };
 
         $scope.getEpgItems = function () {
-            var from = moment($scope.from).format('YYYY-MM-DD');
-            var to = moment($scope.to).format('YYYY-MM-DD');
-            $http.get('api/ratings_epg_history?tv_id=' + $scope.cid + '&start_ds=' + from + '&end_ds=' + to + '&page_no=1&page_size=65').
-                success(function (data) {
+            var p = kuChannels.getEPG($scope.from, $scope.to, $scope.cid);
+            p.then(function (f) {
                     //@TODO 修改API后去掉这部分
-                    var items = data.result.list;
+                    var items = f.data.result.list;
                     var i;
                     for (i = 0; i < items.length; i++) {
                         items[i].date = moment(items[i].start_time).format("MM-DD");

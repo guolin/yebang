@@ -3,8 +3,8 @@
 /* Controllers */
 
 angular.module('app')
-    .controller('AppCtrl', ['$scope', '$rootScope', '$http', '$window',
-        function ($scope, $rootScope, $http, $window) {
+    .controller('AppCtrl', ['$scope', '$rootScope', '$http', '$window','kuChannels',
+        function ($scope, $rootScope, $http, $window, kuChannels) {
             // add 'ie' classes to html
             var isIE = !!navigator.userAgent.match(/MSIE/i);
             isIE && angular.element($window.document.body).addClass('ie');
@@ -46,29 +46,12 @@ angular.module('app')
             }
 
             $scope.isXSmallDevice = function(){
-                if( $('#xs-test').css('display') == 'none' ){
-                    return false;
-                }else{
-                    return true;
-                }
+                return $('#xs-test').css('display') != 'none';
             };
 
-            $rootScope.getChannels = function(){
-                $http.get('/fapi/channels.json').
-                    success(function(data){
-                        var i;
-                        var channels = {};
-                        for(i=0 ; i < data.length; i++){
-                            channels[data[i].id] = {
-                                id : data[i].id,
-                                name : data[i].name,
-                                type : data[i].type
-                            }
-                        }
-                        $rootScope.channelIDs = channels;
-                        $rootScope.channels = data;
-                    });
-            };
-            $rootScope.getChannels();
+            kuChannels.getChannels(function(data){
+                $.extend($rootScope, data);
+            });
+
         }]);
 

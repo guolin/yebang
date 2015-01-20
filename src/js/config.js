@@ -5,7 +5,6 @@ var app =
         .config(
         ['$controllerProvider', '$compileProvider', '$filterProvider', '$provide',
             function ($controllerProvider, $compileProvider, $filterProvider, $provide) {
-
                 // lazy controller, directive and service
                 app.controller = $controllerProvider.register;
                 app.directive = $compileProvider.directive;
@@ -15,4 +14,7 @@ var app =
                 app.constant = $provide.constant;
                 app.value = $provide.value;
             }
-        ]);
+        ])
+        .factory('cache', ['$cacheFactory', function($cacheFactory) {
+            return $cacheFactory('cache');
+        }]);

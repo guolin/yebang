@@ -1,6 +1,6 @@
 
-app.controller('IOCtrl', ['$scope', '$http','$stateParams',
-    function ($scope, $http, $stateParams) {
+app.controller('IOCtrl', ['$scope', '$http','$stateParams','$timeout','kuChannels',
+    function ($scope, $http, $stateParams, $timeout, kuChannels) {
 
         $scope.start = moment().subtract(30,'minutes');
         $scope.end = moment();
@@ -80,45 +80,34 @@ app.controller('IOCtrl', ['$scope', '$http','$stateParams',
         };
 
         $scope.refresh = function () {
-            var dtString = moment($scope.dt).format('YYYY-MM-DD');
-            var tvidString = $scope.tvid.id;
 
-            $('.butterbar').removeClass('hide').addClass('active');
-            $scope.myPromise = $http.get('/api/ratings_history?tv_id=' + tvidString + '&start_ds=' + dtString + '&end_ds=' + dtString).
-                success(function (data, status, headers, config) {
+            $scope.myPromise = kuChannels.getRating($scope.dt, $scope.dt, $scope.tvid.id);
+            $scope.myPromise.then(function (p) {
+                var data = p.data;
 
-                    var ps = data.result.list;
-                    var c = [];
-                    var r = [];
-                    var s = [];
-                    for (var i = 0; i < ps.length; i++) {
-                        c.push(moment(ps[i].timestamp, 'YYYYMMDDHHmmss').format('HH:mm'));
-                        r.push(ps[i].tv_ratings);
-                    }
-                    $scope.option = getOption(c, r);
-                    // butterbar
-                    setTimeout(function () {
-                        $('.butterbar').removeClass('active').addClass('hide');
-                    }, 500);
-                });
+                var ps = data.result.list;
+                var c = [];
+                var r = [];
+                var s = [];
+                for (var i = 0; i < ps.length; i++) {
+                    c.push(moment(ps[i].timestamp, 'YYYYMMDDHHmmss').format('HH:mm'));
+                    r.push(ps[i].tv_ratings);
+                }
+                $scope.option = getOption(c, r);
+            });
         };
 
         $scope.getItems = function(){
-            var date = moment($scope.dt).format('YYYY-MM-DD ');
-            start = date+moment($scope.start).format('HH:mm:ss');
-            end = date+moment($scope.end).format('HH:mm:ss');
-            var tvidString = $scope.tvid.id;
-
-            $scope.ioPromise = $http.get('/labapi/tv_io?tv_id='+tvidString+'&start_time='+start+'&end_time='+end).
-                success(function (data) {
+            $scope.ioPromise = kuChannels.getIO($scope.dt ,$scope.start, $scope.end, $scope.tvid.id);
+            $scope.ioPromise.then(function (f) {
+                    var data = f.data;
                     $scope.items = data.result.list;
                     $scope.total = data.result.total;
                     $scope.total.abs = $scope.total.in - $scope.total.out;
                     $scope.startRating = data.result.start_ssl;
                     $scope.endRating = data.result.end_ssl;
 
-
-                    setTimeout(function () {
+                    $timeout(function () {
                         $('.table').trigger('footable_initialize');
                     }, 500);
                 }

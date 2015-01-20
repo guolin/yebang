@@ -1,5 +1,5 @@
-app.controller('TvShowsTopCtrl', ['$scope','$http', '$timeout',
-    function ($scope, $http, $timeout) {
+app.controller('TvShowsTopCtrl', ['$scope','$http', '$timeout','kuTVShows',
+    function ($scope, $http, $timeout, kuTVShows) {
 
 
     $scope.clear = function () {
@@ -37,13 +37,9 @@ app.controller('TvShowsTopCtrl', ['$scope','$http', '$timeout',
     $scope.reportType = $scope.reportTypes[0];
 
     var refresh = function(){
-        var type = $scope.reportType.id.toString();
-        var dateString = moment($scope.dt).format('YYYY-MM-DD')
-        var url = 'labapi/epg_sort?type='+type+'&date='+dateString;
-        $('.butterbar').removeClass('hide').addClass('active');
-        $http.get(url).
-            success(function(data, status, headers, config) {
-                //@TODO 改API后删除这部分
+        $scope.promise = kuTVShows.getTopTVShows($scope.dt, $scope.reportType.id.toString());
+        $scope.promise.then(function(p) {
+                var data = p.data;
                 var items = data.list;
                 var i;
                 for (i = 0; i < items.length; i++) {
@@ -53,7 +49,6 @@ app.controller('TvShowsTopCtrl', ['$scope','$http', '$timeout',
                 }
                 $scope.items = items;
                 $timeout(function () {
-                    $('.butterbar').removeClass('active').addClass('hide');
                     $('.table').trigger('footable_initialize');
                 }, 500);
             });
@@ -67,8 +62,8 @@ app.controller('TvShowsTopCtrl', ['$scope','$http', '$timeout',
 
 }]);
 
-app.controller('TvshowsCtrl', ['$scope', '$http','$stateParams',
-    function ($scope, $http, $stateParams) {
+app.controller('TvshowsCtrl', ['$scope', '$http','$stateParams','kuTVShows',
+    function ($scope, $http, $stateParams,kuTVShows) {
         var typeid = $stateParams.typeid;
         var showid = $stateParams.showid;
 
@@ -138,28 +133,21 @@ app.controller('TvshowsCtrl', ['$scope', '$http','$stateParams',
         };
 
         $scope.refresh = function () {
-
-            $('.butterbar').removeClass('hide').addClass('active');
-            $http.get('/labapi/epg_detail_ratings?type='+typeid+'&ca_id='+showid).
-                success(function (data, status, headers, config) {
-
-
-                    var c = data.result.date;
-                    var v = data.result.values;
-                    $scope.name = data.result.name;
-
-
-                    $scope.option = getOption(c, v);
-                    // butterbar
-                    setTimeout(function () {
-                        $('.butterbar').removeClass('active').addClass('hide');
-                    }, 500);
-                });
+            var p = kuTVShows.getRating(typeid, showid);
+            p.then(function (p) {
+                var data = p.data
+                var c = data.result.date;
+                var v = data.result.values;
+                $scope.name = data.result.name;
+                $scope.option = getOption(c, v);
+            });
         };
 
 
         $scope.getItems = function(){
-            $http.get('/labapi/epg_detail?ca_id='+showid+'&page_size=150&type='+typeid).success(function (data) {
+            var p = kuTVShows.getEPG(typeid, showid);
+            p.then(function (p) {
+                    var data = p.data;
                     $scope.items = data.result.list;
                     setTimeout(function () {
                         $('.table').trigger('footable_initialize');
@@ -175,25 +163,27 @@ app.controller('TvshowsCtrl', ['$scope', '$http','$stateParams',
 
     }]);
 
-app.controller('TvShowRatingCtrl', ['$scope', '$http','$stateParams',
-    function ($scope, $http, $stateParams) {
+app.controller('TvShowRatingCtrl', ['$scope', '$http','$stateParams','kuTVShows',
+    function ($scope, $http, $stateParams,kuTVShows) {
         var showid = $stateParams.showid;
 
         $scope.getItems = function(){
-            $scope.ioPromise = $http.get('/api/rating_province?epg_id='+showid).success(function (data) {
-                    var items = [];
-                    var i;
-                    var keys =  Object.keys(data);
-                    for(i = 0;i < keys.length; i++){
-                        var k = keys[i];
-                        var v = data[k];
-                        items.push({name:k,rating:v});
-                    }
-                    $scope.items = items;
-                    setTimeout(function () {
-                        $('.table').trigger('footable_initialize');
-                    }, 500);
+            $scope.ioPromise = kuTVShows.getGeo(showid);
+            $scope.ioPromise.then(function (p) {
+                var data = p;
+                var items = [];
+                var i;
+                var keys =  Object.keys(data);
+                for(i = 0;i < keys.length; i++){
+                    var k = keys[i];
+                    var v = data[k];
+                    items.push({name:k,rating:v});
                 }
+                $scope.items = items;
+                setTimeout(function () {
+                    $('.table').trigger('footable_initialize');
+                }, 500);
+            }
             )
         };
         $scope.getItems();

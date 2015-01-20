@@ -32,7 +32,7 @@
         <div class="form-group col-sm-6" ng-init="tvid = ''">
           <div>
             <select class="w-full form-control m-b" ng-model="tvid"
-                    ng-options="item.name for item in channels track by item.id">
+                    ng-options="item.name group by item.type for item in channels track by item.id">
               <option value="">-- 选择一个电视台 --</option>
             </select>
           </div>

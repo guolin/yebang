@@ -33,7 +33,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-12  no-padder-lg-xs">
+      <div class="col-lg-12  no-padder-lg-xs" cg-busy="{promise:promise,message:'加载中...'}">
         <div class="panel panel-default no-padder-lg-xs">
           <div class="panel-heading">{{f.type}} 实时排行榜</div>
           <div class="table-responsive table-striped">
@@ -50,28 +50,12 @@
               <tr ng-repeat="item in items | filter:f">
                 <td>{{$index + 1}}</td>
                 <td>
-                  <a ui-sref="app.liveChannelDetail({id:item.id})"><span>{{item.name}}</span></a><br
-                    class="visable-xs"/>
-                  <small popover-placement="right" popover="{{item.epgName}}" tooltip="">{{item.epgName | limitTo:10
-                    }}
-                  </small>
+                  <a ui-sref="app.liveChannelDetail({id:item.id})"><span>{{item.name}} </span></a>
+                  <br class="visible-xs-block">
+                  <small class="padder no-padder-lg-xs">{{item.epgName | limitTo:14 }}</small>
                 </td>
-                <td>
-                  {{item.ssl*100 | number:4}}% <br/>
-
-                  <div ng-init="data1=[ 16,15,15,14,17,18,16,15,16,11 ]" ui-jq="sparkline"
-                       ui-options="{{data1}}, {type:'bar', height:19, barWidth:4, barSpacing:2, barColor:'{{app.color.success}}'}"
-                       class="sparkline inline">loading...
-                  </div>
-                </td>
-                <td>
-                  {{item.sczyl*100 | number:4}}% <br/>
-
-                  <div ng-init="data1=[ 16,15,15,14,17,18,16,15,16,11 ]" ui-jq="sparkline"
-                       ui-options="{{data1}}, {type:'bar', height:19, barWidth:4, barSpacing:2, barColor:'{{app.color.success}}'}"
-                       class="sparkline inline">loading...
-                  </div>
-                </td>
+                <td>{{item.ssl*100 | number:4}}%</td>
+                <td>{{item.sczyl*100 | number:4}}%</td>
               </tr>
               </tbody>
             </table>

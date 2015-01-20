@@ -6,8 +6,11 @@
         <input type="text" class="form-control"
                datepicker-popup="yyyy-MM-dd" ng-model="dt"
                is-open="opened"
-               datepicker-options="dateOptions" clear-text="清除"
-               ng-required="true" close-text="关闭"/>
+               datepicker-options="dateOptions"
+               clear-text="清除"
+               current-text="今天"
+               close-text="关闭"
+               ng-required="true" />
                 <span class="input-group-btn">
                     <button type="button" class="btn btn-default" ng-click="open($event)">
                       <i class="glyphicon glyphicon-calendar"></i>
@@ -45,7 +48,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-12 no-padder-lg-xs">
+    <div class="col-sm-12 no-padder-lg-xs" cg-busy="{promise:promise,message:'加载中...'}">
       <div class="panel panel-default no-padder-lg-xs table-responsive">
         <div ng-click="refresh()" class="panel-heading">{{dt|date:'M月d日': +8}} 电视台排行</div>
         <table class="table table-striped">

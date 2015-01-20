@@ -1,19 +1,15 @@
-app.controller('LiveTopCtrl', ['$scope', '$http','$timeout', function ($scope, $http,$timeout) {
-    var getTop = function(){
-        $('.butterbar').removeClass('hide').addClass('active');
-        $http.get('/api/channel_list').
-            success(function (data, status, headers, config) {
-                $scope.items = data;
-                $timeout(function () {
-                    $('.butterbar').removeClass('active').addClass('hide');
-                }, 500);
-            });
-    };
-    getTop();
+app.controller('LiveTopCtrl', ['$scope', '$http','$timeout', 'kuChannels',
+    function ($scope, $http, $timeout, kuChannels) {
+
+        $scope.promise = kuChannels.getLiveTopChannels();
+        $scope.promise.then(function(p){
+            $scope.items = p.data
+        });
+
 }]);
 
-app.controller('LiveCtrl', ['$scope', '$http', '$interval','$stateParams','$timeout',
-    function ($scope, $http, $interval,$stateParams,$timeout ) {
+app.controller('LiveCtrl', ['$scope', '$http', '$interval','$stateParams','$timeout','kuChannels',
+    function ($scope, $http, $interval,$stateParams,$timeout,kuChannels) {
         $scope.n = 1;
         $scope.cid = $stateParams.id;
         $scope.promise = '';
@@ -111,8 +107,11 @@ app.controller('LiveCtrl', ['$scope', '$http', '$interval','$stateParams','$time
         };
 
         var refresh = function(frequency){
-            $http.get('/api/ratings_'+ frequency +'?tv_id='+$scope.cid).
-                success(function (data, status, headers, config) {
+            var chartPromise =
+                kuChannels.getLiveRating(frequency, $scope.cid);
+
+            chartPromise.then(function (p) {
+                    var data = p.data;
                     var result = data.result;
                     var c = [];
                     var ratings = [];
@@ -125,12 +124,13 @@ app.controller('LiveCtrl', ['$scope', '$http', '$interval','$stateParams','$time
                         shares.push(result[i].market_ratings);
                         tvshows.push(result[i][t]);
                     }
-                    $scope.option = getOption(c,ratings,shares,tvshows);
+                    $scope.option = getOption(c , ratings , shares , tvshows);
                     $scope.currentDate = moment().format('HH:mm:ss');
                     $scope.currentRating = result[result.length-1].tv_ratings;
                     $scope.currentShare = result[result.length-1].market_ratings;
                     $scope.currentTvshow = result[result.length-1][result[result.length-1].timestamp];
                 });
+            return chartPromise;
         };
 
         $scope.setFrequence = function(frequence){
@@ -138,20 +138,18 @@ app.controller('LiveCtrl', ['$scope', '$http', '$interval','$stateParams','$time
             var cancle = function(){
                 if($scope.promise){
                     $interval.cancel($scope.promise);
-                };
+                }
             };
 
             $scope.frequence = frequence;
             cancle();
 
             if(frequence === 'seconds'){
-
                 refresh('seconds');
                 $scope.promise =  $interval(function () {
                     refresh('seconds');
                 }, 1000);
             }else if(frequence === 'minutes'){
-
                 refresh('minutes');
                 $scope.promise =  $interval(function () {
                     refresh('minutes');
