@@ -1,0 +1,59 @@
+<div class="wrapper " ng-controller="BrandAdsCtrl">
+  <div class="row">
+    <div class="form-group col-sm-6">
+      <div class="input-group">
+        <input type="text" class="form-control"
+               datepicker-popup="yyyy-MM-dd" ng-model="dt"
+               is-open="opened"
+               datepicker-options="dateOptions"
+               clear-text="清除"
+               current-text="今天"
+               close-text="关闭"
+               ng-required="true" />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open($event)">
+                      <i class="glyphicon glyphicon-calendar"></i>
+                    </button>
+                </span>
+      </div>
+    </div>
+    <div class="form-group col-sm-6 ">
+      <div>
+        <select class="w-full form-control m-b" ng-model="tvid"
+                ng-options="item.name group by item.type for item in channels track by item.id">
+          <option value="">-- 选择一个电视台 --</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 no-padder-lg-xs" cg-busy="{promise:promise,message:'加载中...'}">
+      <div class="panel panel-default no-padder-lg-xs table-responsive">
+        <div ng-click="refresh()" class="panel-heading">{{dt|date:'M月d日': +8}} 电视台广告分布</div>
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>#</th>
+            <th>名称</th>
+            <th>次数</th>
+            <th>时长</th>
+            <th>毛评点</th>
+            <th>市占比</th>
+          </tr>
+          </thead>
+          <tbody">
+          <tr ng-repeat="item in items">
+            <td>{{$index+1}}</td>
+            <td><a ui-sref="app.channelDetail({id:item.tv_id})">{{item.name}}</a></td>
+            <td>123112次</td>
+            <td>123124分钟</td>
+            <td>{{item.GRP}}%</td>
+            <td>{{item.share}}%</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>

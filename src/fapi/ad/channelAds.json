@@ -1,0 +1,44 @@
+{
+  "code": 0,
+  "message": "",
+  "page_size": 68,
+  "result": {
+    "list": [
+      {
+        "date": "2015-01-20",
+        "channel_name": "北京电视台",
+        "GRP": 1225.1
+      },
+      {
+        "date": "2015-01-20",
+        "channel_name": "北京卫视",
+        "GRP": 1245.1
+      },
+      {
+        "date": "2015-01-20",
+        "channel_name": "广东卫视",
+        "GRP": 1255.1
+      },
+      {
+        "date": "2015-01-20",
+        "channel_name": "山东卫视",
+        "GRP": 1265.1
+      },
+      {
+        "date": "2015-01-20",
+        "channel_name": "湖南卫视",
+        "GRP": 1235.1
+      },
+      {
+        "date": "2015-01-20",
+        "channel_name": "山西卫视",
+        "GRP": 1245.1
+      },
+      {
+        "date": "2015-01-20",
+        "channel_name": "CCTV",
+        "GRP": 1125.1
+      }
+    ]
+  }
+}

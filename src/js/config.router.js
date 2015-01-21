@@ -210,6 +210,39 @@ angular.module('app')
                         ]
                     }
                 })
+                .state('app.ChannelAd', {
+                    url: '/channelad',
+                    templateUrl: 'tpl/channelad.html',
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['js/controllers/ad.js']);
+                            }
+                        ]
+                    }
+                })
+                .state('app.CategoryAd', {
+                    url: '/categoryad',
+                    templateUrl: 'tpl/categoryad.html',
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['js/controllers/ad.js']);
+                            }
+                        ]
+                    }
+                })
+                .state('app.BrandAd', {
+                    url: '/brandad',
+                    templateUrl: 'tpl/brandad.html',
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['js/controllers/ad.js']);
+                            }
+                        ]
+                    }
+                })
 
                 //帮助
                 .state('app.help', {

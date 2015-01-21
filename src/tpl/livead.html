@@ -4,20 +4,26 @@
 </div>
 
 <div class="row wrapper " ng-controller="LiveAdsCtrl">
-  <div class="col-md-9">
+  <div class="col-md-3 col-sm-12 col-xs-12 pull-right form-group">
+    <select class="w-full form-control m-b" ng-model="tvid"
+            ng-options="item.name group by item.type for item in channels track by item.id">
+      <option value="">-- 选择一个电视台 --</option>
+    </select>
+  </div>
+  <div class="col-md-9 col-sm-12 col-xs-12 pull-left">
     <div class="list-group list-group-lg list-group-sp">
       <a herf class="list-group-item clearfix" ng-repeat="item in items">
         <span class="pull-left thumb-md m-r">
-          <img src="http://tsdown.wx.kyimg.com/files/ad/videos/2dd656d2-f87d-4671-b27b-5a1c088f69c8.jpg" alt="...">
+          <img ng-src="http://img1.kyimg.com/imgp/imgp?default=0&q=80&w=75&h=60&u={{item.img}}" alt="...">
           <i class="on b-white right"></i>
         </span>
         <span class="pull-right m-r">
           <span>关注度：{{item.ratio}}％</span>
         </span>
         <span class="clear">
-          <span>名称：{{item.tag_name}}</span><br />
-          <span>时间：{{item.play_time|dateFormat:'HH:mm'}} </span><br class="visible-xs-block" />
-          <span class="padder no-padder-lg-xs">时长：{{item.length/1000|number:0}}秒</span>
+          <span>{{item.tag_name}} (烟酒 / 红塔山)</span><br />
+          <small>{{item.play_time|dateFormat:'HH:mm'}} </small><br class="visible-xs-block" />
+          <small class="padder no-padder-lg-xs">时长：{{item.length/1000|number:0}}秒</small>
         </span>
       </a>
     </div>

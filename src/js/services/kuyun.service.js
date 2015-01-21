@@ -113,13 +113,21 @@ angular.module('app')
         };
 
         //某一电视台，某一周的品类分布
-        this.getCategories = function(){
-            return;
+        this.getCategoryADs = function(){
+            var url = '/fapi/ad/categoryAds.json';
+            return $http.get(url);
         };
 
         //某一电视台，某一周的品类分布
-        this.getBrands = function(){
-            return;
+        this.getBrandADs = function(){
+            var url = '/fapi/ad/brandAds.json';
+            return $http.get(url);
+        };
+
+        //电视台的广告分布
+        this.getChannelADs = function(){
+            var url = '/fapi/ad/channelAds.json';
+            return $http.get(url);
         };
 
     }]);
