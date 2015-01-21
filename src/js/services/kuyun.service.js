@@ -103,23 +103,24 @@ angular.module('app')
 
     }]);
 
-//angular.module('app', [])
-//    .service('kuAD', ['$q', '$timeout', function ($q, $timeout) {
-//
-//        // 获取实时广告
-//        this.getLiveADs = function(){
-//            return [];
-//        };
-//
-//        //某一电视台，某一周的品类分布
-//        this.getCategories = function(){
-//            return;
-//        };
-//
-//        //某一电视台，某一周的品类分布
-//        this.getBrands = function(){
-//            return;
-//        };
-//
-//    }]);
-//
+angular.module('app')
+    .service('kuAds', ['$http', '$timeout', function ($http, $timeout) {
+
+        // 获取实时广告
+        this.getLiveADs = function(){
+            var url = '/fapi/ad/latestAds.json';
+            return $http.get(url);
+        };
+
+        //某一电视台，某一周的品类分布
+        this.getCategories = function(){
+            return;
+        };
+
+        //某一电视台，某一周的品类分布
+        this.getBrands = function(){
+            return;
+        };
+
+    }]);
+

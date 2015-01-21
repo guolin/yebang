@@ -17,7 +17,7 @@ angular.module('app')
     });
 
 angular.module('app')
-    .filter('dataFormat', function () {
+    .filter('dateFormat', function () {
         return function (date, format) {
             if(" ".indexOf(date)){
                 return moment(date).format(format);

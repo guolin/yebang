@@ -201,7 +201,14 @@ angular.module('app')
                 })
                 .state('app.liveAd', {
                     url: '/livead',
-                    templateUrl: 'tpl/livead.html'
+                    templateUrl: 'tpl/livead.html',
+                    resolve: {
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['js/controllers/ad.js']);
+                            }
+                        ]
+                    }
                 })
 
                 //帮助

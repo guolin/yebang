@@ -1,0 +1,681 @@
+{
+  "code": 0,
+  "message": "",
+  "page_size": 68,
+  "result": {
+    "list": [
+      {
+        "play_time": "2015-01-20 12:14:06",
+        "play_endtime": "2015-01-20 12:14:21",
+        "tag_name": "海尔统帅电器",
+        "type": "家电产品",
+        "brand": "",
+        "length": 15000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/2dd656d2-f87d-4671-b27b-5a1c088f69c8.jpg",
+        "ratio": 0.3558
+      },
+      {
+        "play_time": "2015-01-20 12:22:48",
+        "play_endtime": "2015-01-20 12:23:03",
+        "tag_name": "十八酒坊",
+        "type": "酒类饮品",
+        "brand": "",
+        "length": 15000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/ab28299e-66fa-4863-ad9c-3fc69c124562.jpg",
+        "ratio": 0.4065
+      },
+      {
+        "play_time": "2015-01-20 12:23:03",
+        "play_endtime": "2015-01-20 12:23:18",
+        "tag_name": "浙江台州欢迎您",
+        "type": "休闲娱乐",
+        "brand": "",
+        "length": 15000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/a80e1e93-eada-45e2-b67a-50912dab8828.jpg",
+        "ratio": 0.4004
+      },
+      {
+        "play_time": "2015-01-20 12:23:17",
+        "play_endtime": "2015-01-20 12:23:32",
+        "tag_name": "工银环球旅行信用卡",
+        "type": "金融/保险及衍生品",
+        "brand": "",
+        "length": 15000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/08278a93-f9bd-42ed-b175-a4c6377e60dd.jpg",
+        "ratio": 0.3975
+      },
+      {
+        "play_time": "2015-01-20 12:23:42",
+        "play_endtime": "2015-01-20 12:23:58",
+        "tag_name": "口子窖酒",
+        "type": "酒类饮品",
+        "brand": "",
+        "length": 16000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/964530d7-85b8-47d0-9506-d6fb3ea2b999.jpg",
+        "ratio": 0.3965
+      },
+      {
+        "play_time": "2015-01-20 12:23:44",
+        "play_endtime": "2015-01-20 12:23:58",
+        "tag_name": "口子窖2700年版",
+        "type": "",
+        "brand": "",
+        "length": 14000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/8ff1a084-48ea-49b0-b8e0-a14cfa9346cc.jpg",
+        "ratio": 0.3965
+      },
+      {
+        "play_time": "2015-01-20 12:23:58",
+        "play_endtime": "2015-01-20 12:24:13",
+        "tag_name": "纽崔莱植物营养素倍力健片2",
+        "type": "食品",
+        "brand": "",
+        "length": 15000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/d7358dee-dd88-4df9-a17d-9da9cab02406.jpg",
+        "ratio": 0.395
+      },
+      {
+        "play_time": "2015-01-20 12:26:00",
+        "play_endtime": "2015-01-20 12:26:15",
+        "tag_name": "湖北十堰欢迎您",
+        "type": "休闲娱乐",
+        "brand": "",
+        "length": 15000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/bd6d85a7-17a0-4a27-99e8-356092ca04c7.jpg",
+        "ratio": 0.4038
+      },
+      {
+        "play_time": "2015-01-20 12:26:12",
+        "play_endtime": "2015-01-20 12:26:27",
+        "tag_name": "美丽西安2欢迎您",
+        "type": "休闲娱乐",
+        "brand": "",
+        "length": 15000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/39f0ed05-7003-4ea9-94be-3879d1f6823d.jpg",
+        "ratio": 0.4032
+      },
+      {
+        "play_time": "2015-01-20 12:26:27",
+        "play_endtime": "2015-01-20 12:26:47",
+        "tag_name": "醉美多彩贵州欢迎您2",
+        "type": "休闲娱乐",
+        "brand": "",
+        "length": 20000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/6bc91378-f373-4d36-b5bd-d9a3320c236e.jpg",
+        "ratio": 0.4028
+      },
+      {
+        "play_time": "2015-01-20 12:26:48",
+        "play_endtime": "2015-01-20 12:26:53",
+        "tag_name": "海南欢迎您",
+        "type": "休闲娱乐",
+        "brand": "",
+        "length": 5000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/51c2b83e-2b6f-442e-bc4d-56bb00c8dd50.jpg",
+        "ratio": 0.4016
+      },
+      {
+        "play_time": "2015-01-20 12:27:28",
+        "play_endtime": "2015-01-20 12:27:43",
+        "tag_name": "福州欢迎您",
+        "type": "",
+        "brand": "",
+        "length": 15000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/2158dc5f-ee20-4ab4-9d6d-c360aa492d8f.jpg",
+        "ratio": 0.4023
+      },
+      {
+        "play_time": "2015-01-20 12:32:02",
+        "play_endtime": "2015-01-20 12:32:17",
+        "tag_name": "海天黄豆酱",
+        "type": "",
+        "brand": "",
+        "length": 15000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/900af79d-1222-4606-85cf-9e346ba9da13.jpg",
+        "ratio": 0.3909
+      },
+      {
+        "play_time": "2015-01-20 12:32:32",
+        "play_endtime": "2015-01-20 12:32:47",
+        "tag_name": "红花郎2013版",
+        "type": "酒类饮品",
+        "brand": "郎酒",
+        "length": 15000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/e0ef2789-501d-46f6-8fb4-77f11d9a5506.jpg",
+        "ratio": 0.3927
+      },
+      {
+        "play_time": "2015-01-20 12:32:47",
+        "play_endtime": "2015-01-20 12:33:02",
+        "tag_name": "中老年黄金搭档爷爷背版",
+        "type": "医药及保健品",
+        "brand": "",
+        "length": 15000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/fb6aa188-b340-4b25-a147-7bfe8ef3507e.jpg",
+        "ratio": 0.3946
+      },
+      {
+        "play_time": "2015-01-20 12:33:12",
+        "play_endtime": "2015-01-20 12:33:27",
+        "tag_name": "美的空气能热水器",
+        "type": "家电产品",
+        "brand": "",
+        "length": 15000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/abd524e7-6de0-4724-ade4-3e786ef2eea4.jpg",
+        "ratio": 0.3949
+      },
+      {
+        "play_time": "2015-01-20 12:33:32",
+        "play_endtime": "2015-01-20 12:33:47",
+        "tag_name": "巴黎欧莱雅多效修护5系列5",
+        "type": "化妆/护肤/洗浴用品",
+        "brand": "",
+        "length": 15000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/5937fcf7-a730-4d8e-85cc-97813c1fa2fc.jpg",
+        "ratio": 0.3985
+      },
+      {
+        "play_time": "2015-01-20 12:34:01",
+        "play_endtime": "2015-01-20 12:34:31",
+        "tag_name": "蓝月亮机洗神器",
+        "type": "家居生活用品",
+        "brand": "",
+        "length": 30000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/60101417-5a8d-4f69-859e-d8e166426955.jpg",
+        "ratio": 0.399
+      },
+      {
+        "play_time": "2015-01-20 12:34:31",
+        "play_endtime": "2015-01-20 12:34:46",
+        "tag_name": "加多宝凉茶过吉祥年版",
+        "type": "饮料",
+        "brand": "加多宝",
+        "length": 15000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/380adeb2-9928-47d0-8cdf-723a611b1055.jpg",
+        "ratio": 0.4011
+      },
+      {
+        "play_time": "2015-01-20 12:34:47",
+        "play_endtime": "2015-01-20 12:35:03",
+        "tag_name": "九牧卫浴用品",
+        "type": "家电产品",
+        "brand": "",
+        "length": 16000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/53ceac0e-55f1-4e02-942a-896a3d5eb5de.jpg",
+        "ratio": 0.4045
+      },
+      {
+        "play_time": "2015-01-20 12:36:14",
+        "play_endtime": "2015-01-20 12:36:29",
+        "tag_name": "巴黎欧莱雅美涂霜",
+        "type": "化妆/护肤/洗浴用品",
+        "brand": "",
+        "length": 15000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/aaaba46b-db7e-45ec-b24f-9e2f6551639b.jpg",
+        "ratio": 0.417
+      },
+      {
+        "play_time": "2015-01-20 12:36:28",
+        "play_endtime": "2015-01-20 12:36:43",
+        "tag_name": "中国劲酒",
+        "type": "酒类饮品",
+        "brand": "",
+        "length": 15000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/cb24e0ff-f210-4010-a29f-cec840c705e9.jpg",
+        "ratio": 0.4185
+      },
+      {
+        "play_time": "2015-01-20 12:37:09",
+        "play_endtime": "2015-01-20 12:37:24",
+        "tag_name": "红星蓝瓶二锅头完整版",
+        "type": "",
+        "brand": "",
+        "length": 15000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/16fb2c27-e5a2-4c61-9bf3-0010722512a6.jpg",
+        "ratio": 0.4231
+      },
+      {
+        "play_time": "2015-01-20 12:37:24",
+        "play_endtime": "2015-01-20 12:37:39",
+        "tag_name": "多力葵花油",
+        "type": "食品",
+        "brand": "",
+        "length": 15000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/2f8148a5-584b-47cb-8344-af00d03eca3d.jpg",
+        "ratio": 0.4259
+      },
+      {
+        "play_time": "2015-01-20 12:37:39",
+        "play_endtime": "2015-01-20 12:37:54",
+        "tag_name": "青花汾酒奏折版",
+        "type": "酒类饮品",
+        "brand": "汾酒",
+        "length": 15000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/4b7a7fe5-47eb-4e22-9953-1461cb417d63.jpg",
+        "ratio": 0.4291
+      },
+      {
+        "play_time": "2015-01-20 13:04:34",
+        "play_endtime": "2015-01-20 13:04:54",
+        "tag_name": "娃哈哈乳酸菌饮品",
+        "type": "饮料",
+        "brand": "娃哈哈",
+        "length": 20000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/7649cb5c-7872-4028-9731-5082dfdb3453.jpg",
+        "ratio": 0.6176
+      },
+      {
+        "play_time": "2015-01-20 13:04:49",
+        "play_endtime": "2015-01-20 13:05:04",
+        "tag_name": "加多宝凉茶过吉祥年版",
+        "type": "饮料",
+        "brand": "加多宝",
+        "length": 15000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/380adeb2-9928-47d0-8cdf-723a611b1055.jpg",
+        "ratio": 0.5957
+      },
+      {
+        "play_time": "2015-01-20 13:05:06",
+        "play_endtime": "2015-01-20 13:05:16",
+        "tag_name": "青岛啤酒",
+        "type": "酒类饮品",
+        "brand": "",
+        "length": 10000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/11ef7f4d-6285-4214-8331-e19a6bfacd99.jpg",
+        "ratio": 0.5795
+      },
+      {
+        "play_time": "2015-01-20 13:05:20",
+        "play_endtime": "2015-01-20 13:05:30",
+        "tag_name": "传统节日公益广告",
+        "type": "",
+        "brand": "",
+        "length": 10000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/9d45d280-b22b-41b4-b52b-d11170443651.jpg",
+        "ratio": 0.5682
+      },
+      {
+        "play_time": "2015-01-20 13:05:30",
+        "play_endtime": "2015-01-20 13:05:45",
+        "tag_name": "中国电信天翼4G",
+        "type": "邮电通信",
+        "brand": "",
+        "length": 15000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/a699826e-6df7-4e65-812e-069b9e182d3c.jpg",
+        "ratio": 0.5604
+      },
+      {
+        "play_time": "2015-01-20 13:05:44",
+        "play_endtime": "2015-01-20 13:06:00",
+        "tag_name": "格力中国节能环保版",
+        "type": "家电产品",
+        "brand": "",
+        "length": 16000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/6c0965e7-2a5f-4024-b72c-54677e61ab15.jpg",
+        "ratio": 0.5518
+      },
+      {
+        "play_time": "2015-01-20 13:06:00",
+        "play_endtime": "2015-01-20 13:06:15",
+        "tag_name": "欧莱雅男士劲能醒肤露",
+        "type": "化妆/护肤/洗浴用品",
+        "brand": "",
+        "length": 15000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/61a475de-f263-41e4-9496-af60c9ead843.jpg",
+        "ratio": 0.5417
+      },
+      {
+        "play_time": "2015-01-20 13:06:47",
+        "play_endtime": "2015-01-20 13:07:02",
+        "tag_name": "飘柔焗油护理洗发露",
+        "type": "化妆/护肤/洗浴用品",
+        "brand": "宝洁P&G",
+        "length": 15000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/071c4708-ea29-45e1-848d-600179cb19a8.jpg",
+        "ratio": 0.5207
+      },
+      {
+        "play_time": "2015-01-20 13:07:02",
+        "play_endtime": "2015-01-20 13:07:31",
+        "tag_name": "中国移动4G网络",
+        "type": "邮电通信",
+        "brand": "",
+        "length": 29000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/50b360d9-5dbc-4676-afce-0821ab426e04.jpg",
+        "ratio": 0.5022
+      },
+      {
+        "play_time": "2015-01-20 13:07:32",
+        "play_endtime": "2015-01-20 13:07:57",
+        "tag_name": "文化济宁欢迎你",
+        "type": "",
+        "brand": "",
+        "length": 25000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/a049f60b-2a77-4bc0-a203-fe81f4ee1b43.jpg",
+        "ratio": 0.4902
+      },
+      {
+        "play_time": "2015-01-20 13:07:37",
+        "play_endtime": "2015-01-20 13:08:07",
+        "tag_name": "山东仙境海岸欢迎您12",
+        "type": "休闲娱乐",
+        "brand": "",
+        "length": 30000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/170857e5-7cb6-4f1f-9e6f-b0fd43db30e8.jpg",
+        "ratio": 0.4876
+      },
+      {
+        "play_time": "2015-01-20 13:07:52",
+        "play_endtime": "2015-01-20 13:08:22",
+        "tag_name": "好客山东欢迎您43",
+        "type": "休闲娱乐",
+        "brand": "",
+        "length": 30000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/456d02d0-0291-489c-a5a2-ada39878930f.jpg",
+        "ratio": 0.4808
+      },
+      {
+        "play_time": "2015-01-20 13:07:57",
+        "play_endtime": "2015-01-20 13:08:27",
+        "tag_name": "山东仙境海岸欢迎您13",
+        "type": "休闲娱乐",
+        "brand": "",
+        "length": 30000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/09d04e94-7d32-4db5-b190-29f5abb98502.jpg",
+        "ratio": 0.4785
+      },
+      {
+        "play_time": "2015-01-20 13:08:02",
+        "play_endtime": "2015-01-20 13:08:12",
+        "tag_name": "仙肤莱漫妮青春定格原液2",
+        "type": "化妆/护肤/洗浴用品",
+        "brand": "",
+        "length": 10000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/7d2d5192-22ea-48fc-b5d6-c2238429a6ca.jpg",
+        "ratio": 0.4808
+      },
+      {
+        "play_time": "2015-01-20 13:08:12",
+        "play_endtime": "2015-01-20 13:08:22",
+        "tag_name": "中沃体质能量饮料",
+        "type": "饮料",
+        "brand": "",
+        "length": 10000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/a0cca709-17c5-4b42-aa39-3a4e37a9cdb9.jpg",
+        "ratio": 0.4755
+      },
+      {
+        "play_time": "2015-01-20 13:08:23",
+        "play_endtime": "2015-01-20 13:08:37",
+        "tag_name": "妮维雅水活小蓝管2",
+        "type": "化妆/护肤/洗浴用品",
+        "brand": "",
+        "length": 14000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/3c33df2f-9778-4d91-b537-55de685ceef9.jpg",
+        "ratio": 0.4714
+      },
+      {
+        "play_time": "2015-01-20 13:08:37",
+        "play_endtime": "2015-01-20 13:08:52",
+        "tag_name": "西王玉米胚芽油3",
+        "type": "食品",
+        "brand": "",
+        "length": 15000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/ef88bf30-d0d3-4c32-86b9-0d9d36dd8cb1.jpg",
+        "ratio": 0.4672
+      },
+      {
+        "play_time": "2015-01-20 13:08:52",
+        "play_endtime": "2015-01-20 13:09:07",
+        "tag_name": "双汇椰果烤香肠",
+        "type": "食品",
+        "brand": "",
+        "length": 15000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/f81ad686-dfaa-4f65-84cb-4746a0e11983.jpg",
+        "ratio": 0.4642
+      },
+      {
+        "play_time": "2015-01-20 13:09:07",
+        "play_endtime": "2015-01-20 13:09:12",
+        "tag_name": "长寿花金胚玉米油",
+        "type": "食品",
+        "brand": "",
+        "length": 5000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/729e8a05-9aed-4d2d-adf7-af9dc8bca5e6.jpg",
+        "ratio": 0.4599
+      },
+      {
+        "play_time": "2015-01-20 13:09:27",
+        "play_endtime": "2015-01-20 13:09:42",
+        "tag_name": "文明餐桌从我做起公益广告",
+        "type": "免费及公益",
+        "brand": "",
+        "length": 15000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/f7ecda53-544c-42bd-922d-7b2e5ccf2b91.jpg",
+        "ratio": 0.4535
+      },
+      {
+        "play_time": "2015-01-20 13:09:32",
+        "play_endtime": "2015-01-20 13:09:52",
+        "tag_name": "文明餐桌从我做起完整版",
+        "type": "",
+        "brand": "",
+        "length": 20000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/ad260a93-acf5-41b6-a300-65a0a0b7dc36.jpg",
+        "ratio": 0.4525
+      },
+      {
+        "play_time": "2015-01-20 13:10:01",
+        "play_endtime": "2015-01-20 13:10:16",
+        "tag_name": "康师傅红烧牛肉面",
+        "type": "食品",
+        "brand": "",
+        "length": 15000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/216267f4-47ec-4544-afb1-1218e8cd3e09.jpg",
+        "ratio": 0.4451
+      },
+      {
+        "play_time": "2015-01-20 13:10:16",
+        "play_endtime": "2015-01-20 13:10:46",
+        "tag_name": "仙境海岸欢迎您25",
+        "type": "休闲娱乐",
+        "brand": "",
+        "length": 30000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/fb3c3a58-5fa2-468d-aaaa-f2b058b4e909.jpg",
+        "ratio": 0.4396
+      },
+      {
+        "play_time": "2015-01-20 13:10:29",
+        "play_endtime": "2015-01-20 13:10:59",
+        "tag_name": "好客山东欢迎您43",
+        "type": "休闲娱乐",
+        "brand": "",
+        "length": 30000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/456d02d0-0291-489c-a5a2-ada39878930f.jpg",
+        "ratio": 0.4375
+      },
+      {
+        "play_time": "2015-01-20 13:10:34",
+        "play_endtime": "2015-01-20 13:11:04",
+        "tag_name": "好客山东欢迎您44",
+        "type": "休闲娱乐",
+        "brand": "",
+        "length": 30000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/36f10910-8d3b-40c5-990a-9f3afd984bc2.jpg",
+        "ratio": 0.4366
+      },
+      {
+        "play_time": "2015-01-20 13:11:37",
+        "play_endtime": "2015-01-20 13:11:52",
+        "tag_name": "蒙牛纯甄酸奶年味版",
+        "type": "饮料",
+        "brand": "蒙牛",
+        "length": 15000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/e391049c-59e0-45f2-9d38-22caddbac213.jpg",
+        "ratio": 0.4179
+      },
+      {
+        "play_time": "2015-01-20 13:12:33",
+        "play_endtime": "2015-01-20 13:13:30",
+        "tag_name": "美亚保险双重保",
+        "type": "",
+        "brand": "",
+        "length": 57000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/ae12884a-3485-49c1-acd0-a7d4be934aeb.jpg",
+        "ratio": 0.3997
+      },
+      {
+        "play_time": "2015-01-20 13:12:42",
+        "play_endtime": "2015-01-20 13:12:52",
+        "tag_name": "中国年让世界相连公益广告",
+        "type": "免费及公益",
+        "brand": "",
+        "length": 10000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/c1db625a-15b8-4305-8a63-cff9efc0b88a.jpg",
+        "ratio": 0.4059
+      },
+      {
+        "play_time": "2015-01-20 13:58:52",
+        "play_endtime": "2015-01-20 13:59:22",
+        "tag_name": "中国移动4G网络",
+        "type": "邮电通信",
+        "brand": "",
+        "length": 30000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/50b360d9-5dbc-4676-afce-0821ab426e04.jpg",
+        "ratio": 0.2523
+      },
+      {
+        "play_time": "2015-01-20 13:59:21",
+        "play_endtime": "2015-01-20 13:59:36",
+        "tag_name": "康师傅红烧牛肉面",
+        "type": "食品",
+        "brand": "",
+        "length": 15000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/216267f4-47ec-4544-afb1-1218e8cd3e09.jpg",
+        "ratio": 0.2475
+      },
+      {
+        "play_time": "2015-01-20 13:59:36",
+        "play_endtime": "2015-01-20 13:59:42",
+        "tag_name": "贝迪型材",
+        "type": "工业用品",
+        "brand": "",
+        "length": 6000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/5134cacf-0320-4da5-832d-311e139dcb9a.jpg",
+        "ratio": 0.2467
+      },
+      {
+        "play_time": "2015-01-20 13:59:42",
+        "play_endtime": "2015-01-20 13:59:47",
+        "tag_name": "长寿花金胚玉米油",
+        "type": "食品",
+        "brand": "",
+        "length": 5000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/729e8a05-9aed-4d2d-adf7-af9dc8bca5e6.jpg",
+        "ratio": 0.2463
+      },
+      {
+        "play_time": "2015-01-20 13:59:47",
+        "play_endtime": "2015-01-20 14:00:06",
+        "tag_name": "开车时勿乱扔垃圾，请爱护环境公益广告",
+        "type": "免费及公益",
+        "brand": "",
+        "length": 19000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/0afa8ee2-f157-4477-99e7-4310fb2a70cb.jpg",
+        "ratio": 0.2453
+      },
+      {
+        "play_time": "2015-01-20 14:00:21",
+        "play_endtime": "2015-01-20 14:00:36",
+        "tag_name": "露露杏仁露",
+        "type": "饮料",
+        "brand": "",
+        "length": 15000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/61fccbab-d753-4e23-89e0-1d157c143a59.jpg",
+        "ratio": 0.2424
+      },
+      {
+        "play_time": "2015-01-20 14:00:36",
+        "play_endtime": "2015-01-20 14:01:06",
+        "tag_name": "蓝月亮机洗神器",
+        "type": "家居生活用品",
+        "brand": "",
+        "length": 30000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/60101417-5a8d-4f69-859e-d8e166426955.jpg",
+        "ratio": 0.2406
+      },
+      {
+        "play_time": "2015-01-20 14:01:21",
+        "play_endtime": "2015-01-20 14:01:36",
+        "tag_name": "巴黎欧莱雅多效修护5系列4",
+        "type": "化妆/护肤/洗浴用品",
+        "brand": "",
+        "length": 15000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/503334a3-1ccc-4c48-94d0-d59a3a296c44.jpg",
+        "ratio": 0.2378
+      },
+      {
+        "play_time": "2015-01-20 14:01:22",
+        "play_endtime": "2015-01-20 14:01:37",
+        "tag_name": "巴黎欧莱雅多效修护5系列5",
+        "type": "化妆/护肤/洗浴用品",
+        "brand": "",
+        "length": 15000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/5937fcf7-a730-4d8e-85cc-97813c1fa2fc.jpg",
+        "ratio": 0.2378
+      },
+      {
+        "play_time": "2015-01-20 14:01:37",
+        "play_endtime": "2015-01-20 14:01:52",
+        "tag_name": "脑白金",
+        "type": "医药及保健品",
+        "brand": "",
+        "length": 15000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/8df5d82d-e5ed-4f2f-a306-2cba8a088aed.jpg",
+        "ratio": 0.2376
+      },
+      {
+        "play_time": "2015-01-20 14:01:52",
+        "play_endtime": "2015-01-20 14:02:07",
+        "tag_name": "统一老坛酸菜牛肉面",
+        "type": "食品",
+        "brand": "",
+        "length": 15000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/b666613b-758d-4cd5-8c27-46f73ae3861d.jpg",
+        "ratio": 0.2362
+      },
+      {
+        "play_time": "2015-01-20 14:02:07",
+        "play_endtime": "2015-01-20 14:02:22",
+        "tag_name": "东阿阿胶",
+        "type": "食品",
+        "brand": "",
+        "length": 15000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/24fb592e-0d10-4c80-97b9-6e95d49b385c.jpg",
+        "ratio": 0.2339
+      },
+      {
+        "play_time": "2015-01-20 14:02:22",
+        "play_endtime": "2015-01-20 14:02:36",
+        "tag_name": "君乐宝开啡尔酸奶",
+        "type": "饮料",
+        "brand": "",
+        "length": 14000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/ef59522a-1257-4209-a2d6-50d53df72466.jpg",
+        "ratio": 0.2335
+      },
+      {
+        "play_time": "2015-01-20 14:02:42",
+        "play_endtime": "2015-01-20 14:02:57",
+        "tag_name": "超能植萃低泡洗衣液孙俪版",
+        "type": "家居生活用品",
+        "brand": "",
+        "length": 15000,
+        "img": "http://tsdown.wx.kyimg.com/files/ad/videos/d406a0d6-e2e4-42cb-967e-6dd8bc030f8f.jpg",
+        "ratio": 0.2335
+      }
+    ]
+  },
+  "total_item": 68,
+  "total_page": 1
+}
