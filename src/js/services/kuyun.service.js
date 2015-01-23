@@ -52,7 +52,7 @@ angular.module('app').
             this.getRating = function(from, to , tvid){
                 var fromString = moment(from).format('YYYY-MM-DD');
                 var toString = moment(to).format('YYYY-MM-DD');
-                var url = '/api/ratings_history?tv_id=' + tvid + '&start_ds=' + fromString + '&end_ds=' + toString;
+                var url = '/labapi/ratings_history?tv_id=' + tvid + '&start_ds=' + fromString + '&end_ds=' + toString;
                 return $http.get(url);
             };
 
@@ -80,19 +80,19 @@ angular.module('app')
         // 获取电视节目的排行：时间＋排行类型
         this.getTopTVShows = function(date, type){
             var dateString = moment(date).format('YYYY-MM-DD');
-            var url = 'labapi/epg_sort?type='+type+'&date='+dateString;
+            var url = 'api/epg_sort?type='+type+'&date='+dateString;
             return $http.get(url);
         };
 
         //某一电视台，某一个时段
         this.getRating = function(typeid, showid){
-            var url = '/labapi/epg_detail_ratings?type='+typeid+'&ca_id='+showid;
+            var url = '/api/epg_detail_ratings?type='+typeid+'&ca_id='+showid;
             return $http.get(url);
         };
 
         //某个抽象栏目下的具体栏目
         this.getEPG = function(typeid, showid){
-            var url = '/labapi/epg_detail?ca_id='+showid+'&page_size=150&type='+typeid;
+            var url = '/api/epg_detail?ca_id='+showid+'&page_size=150&type='+typeid;
             return $http.get(url);
         };
 
@@ -107,8 +107,11 @@ angular.module('app')
     .service('kuAds', ['$http', '$timeout', function ($http, $timeout) {
 
         // 获取实时广告
-        this.getLiveADs = function(){
-            var url = '/fapi/ad/latestAds.json';
+        this.getLiveADs = function(tvid){
+            var url = 'labapi/ad_list?start_time=2014-12-05%2019:00:00&end_time=2015-12-05%2023:00:00&tv_id=';
+            if(tvid){
+                url = url+tvid;
+            }
             return $http.get(url);
         };
 

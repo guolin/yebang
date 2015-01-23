@@ -1,10 +1,22 @@
 app.controller('LiveAdsCtrl', ['$scope', '$http','$timeout', 'kuAds',
     function ($scope, $http, $timeout, kuAds) {
 
-        $scope.promise = kuAds.getLiveADs();
-        $scope.promise.then(function(p){
-            $scope.items = p.data.result.list;
-        });
+        var refresh = function(){
+            var tvid = null;
+            if($scope.tvid){
+                tvid = $scope.tvid.id;
+            }
+            $scope.promise = kuAds.getLiveADs(tvid);
+            $scope.promise.then(function(p){
+                $scope.items = p.data.result.list;
+            });
+        };
+        refresh();
+
+
+        $scope.$watch('tvid',function(){
+            refresh();
+        })
 
     }]);
 
