@@ -3,9 +3,10 @@
 .sass-cache/
 npm-debug.log
 node_modules/
-public/lib
-app/tests/coverage/
+src/lib
 dist/
 bower_components/
 .bower-*/
 .idea/
+src/index.html
+src/dist

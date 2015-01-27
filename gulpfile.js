@@ -96,8 +96,8 @@ gulp.task('server', function () {
                     var options = url.parse('http://eye.lab.kuyun.com/api');
                     options.route = '/labapi';
                     return proxy(options);
-                })(),
-                require('connect-gzip').gzip()
+                })()
+                //,require('connect-gzip').gzip()
             ];
         }
     });
