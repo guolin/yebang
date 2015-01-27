@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="app">
+<head>
+  <meta charset="utf-8"/>
+  <title>KY野榜</title>
+  <meta name="description" content="big data"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+  <link rel="stylesheet" href="/dist/css/lib.min.css" type="text/css"/>
+  <link rel="stylesheet" href="/dist/css/app.css" type="text/css"/>
+
+</head>
+<body ng-controller="AppCtrl">
+<div class="app" id="app"
+     ng-class="{'app-header-fixed':app.settings.headerFixed, 'app-aside-fixed':app.settings.asideFixed, 'app-aside-folded':app.settings.asideFolded, 'app-aside-dock':app.settings.asideDock, 'container':app.settings.container}"
+     ui-view></div>
+
+
+<script src="/dist/js/lib.min.js"></script>
+<script src="/dist/js/app.min.js"></script>
+
+</body>
+</html>

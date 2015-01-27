@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="app">
+<head>
+  <meta charset="utf-8"/>
+  <title>KY野榜</title>
+  <meta name="description" content="TV Rating BigData"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+  <!-- inject:css -->
+  <!-- endinject -->
+
+</head>
+<body ng-controller="AppCtrl">
+  <div class="app" id="app"
+       ng-class="{'app-header-fixed':app.settings.headerFixed, 'app-aside-fixed':app.settings.asideFixed, 'app-aside-folded':app.settings.asideFolded, 'app-aside-dock':app.settings.asideDock, 'container':app.settings.container}"
+       ui-view></div>
+  <div id="xs-test" class="visible-xs"></div>
+
+
+  <!-- inject:js -->
+  <!-- the rest of the *.js files will be injected here -->
+  <!-- endinject -->
+
+  <!-- Lazy loading -->
+  <script type="text/javascript" src="http://localhost:35729/livereload.js"></script>
+
+</body>
+</html>

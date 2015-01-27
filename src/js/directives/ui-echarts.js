@@ -18,7 +18,7 @@ angular.module('ui.echarts', ['ui.load'])
                         window.onresize = myChart.resize;
                     };
                     if (!window.echarts) {
-                        uiLoad.load(['vendor/echarts/echarts-all.js']).then(function () {
+                        uiLoad.load(['lib/echarts/build/dist/echarts-all.js']).then(function () {
                             getChart();
                         }).catch(function () {});
                     } else {

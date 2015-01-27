@@ -15,6 +15,7 @@ var app =
                 app.value = $provide.value;
             }
         ])
+        //配置一个cache
         .factory('cache', ['$cacheFactory', function($cacheFactory) {
             return $cacheFactory('cache');
         }]);

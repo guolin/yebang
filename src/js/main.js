@@ -12,8 +12,8 @@ angular.module('app')
 
             // config
             $scope.app = {
-                name: '酷云EYE',
-                version: '0.3.3',
+                name: 'KY野榜',
+                version: '0.0.3',
                 // for chart colors
                 color: {
                     primary: '#7266ba',
