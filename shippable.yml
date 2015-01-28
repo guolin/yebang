@@ -7,7 +7,7 @@ node_js:
 
 before_script:
   - npm install
-  - bower install
+  - bower install -f
 
 # Running the tests with grunt
 script:
