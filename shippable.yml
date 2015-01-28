@@ -5,6 +5,8 @@ language: node_js
 node_js:
   - 0.10.25
 
+build_image: dockerfile/nodejs
+
 before_script:
   - npm install gulp -g
   - npm install
@@ -13,3 +15,5 @@ before_script:
 # Running the tests with grunt
 script:
   - gulp build
+
+cache:true
