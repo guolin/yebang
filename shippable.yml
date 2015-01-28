@@ -6,6 +6,7 @@ node_js:
   - 0.10.25
 
 before_script:
+  - npm install gulp -g
   - npm install
   - bower install -f
 
