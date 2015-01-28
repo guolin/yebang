@@ -148,6 +148,8 @@ gulp.task('watch', function () {
 
 var defaultTasks = ['jshint', 'less','inject', 'server', 'watch'];
 var distTasks = ['less','dist-copy', 'server'];
+var buildTasks = ['jshint', 'less','dist-copy',];
 
 gulp.task('default', defaultTasks);
 gulp.task('dist', distTasks);
+gulp.task('build', buildTasks);
