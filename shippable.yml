@@ -12,4 +12,4 @@ before_script:
 
 # Running the tests with grunt
 script:
-  - gulp
+  - gulp build
