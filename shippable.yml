@@ -15,5 +15,3 @@ before_script:
 # Running the tests with grunt
 script:
   - gulp build
-
-cache:true
