@@ -29,7 +29,6 @@
     "gulp-rimraf": "^0.1.1",
     "gulp-uglify": "^1.0.1",
     "gulp-util": "^3.0.1",
-    //"connect-gzip":"",
     "http-server": "^0.6.1",
     "jshint-stylish": "^1.0.0",
     "karma": "^0.12.28",
