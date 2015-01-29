@@ -1,0 +1,7 @@
+web:
+  build: .
+  command: gulp 
+  volumes:
+    - .:/data
+  ports:
+    - "8000:8888"
