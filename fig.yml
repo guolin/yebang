@@ -1,7 +1,14 @@
 web:
   build: .
-  command: gulp 
+  command: sh -c ./start.sh
   volumes:
-    - .:/data
+#    - .:/data
+    - ./src:/data/src
+    - ./.bowerrc:/data/.bowerrc
+    - ./bower.json:/data/bower.json
+    - ./gulpfile.js:/data/gulpfile.js
+    - ./package.json:/data/package.json
+    - ./start.sh:/data/start.sh
+
   ports:
     - "8000:8888"

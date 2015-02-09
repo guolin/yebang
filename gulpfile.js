@@ -80,7 +80,7 @@ gulp.task('server', function () {
         host: '0.0.0.0',
         port: 8888,
         root: 'src',
-        livereload: true,
+        livereload: process.env.NODE_ENV != "production",
         middleware: function (connect, o) {
             return [
                 (function () {
@@ -146,10 +146,16 @@ gulp.task('watch', function () {
     plugins.livereload.listen();
 });
 
+gulp.task("watch-cid", function(){
+    gulp.watch("src/cid", ['less','dist-copy']).on("change", connect.reload);
+});
+
 var defaultTasks = ['jshint', 'less','inject', 'server', 'watch'];
-var distTasks = ['less','dist-copy', 'server'];
+var distTasks = ['less','dist-copy', 'server',"watch-cid"];
 var buildTasks = ['jshint', 'less','dist-copy',];
 
 gulp.task('default', defaultTasks);
 gulp.task('dist', distTasks);
 gulp.task('build', buildTasks);
+
+

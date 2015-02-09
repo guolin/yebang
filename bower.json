@@ -38,6 +38,7 @@
     "angularjs-toaster": "~0.4.8",
     "echarts": "~2.1.10",
     "angular-busy": "~4.1.2",
-    "footable": "~2.0.3"
+    "footable": "~2.0.3",
+    "jquery":"2.1.3"
   }
 }
