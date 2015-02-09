@@ -5,11 +5,5 @@ language: node_js
 node_js:
   - 0.10.25
 
-before_script:
-  - npm install gulp -g
-  - npm install
-  - bower install -f
-
-# Running the tests with grunt
 script:
-  - gulp build
+  - sh -c ./start.sh
