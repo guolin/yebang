@@ -5,8 +5,10 @@ npm install gulp -g
 echo "install bower"
 npm install bower -g
 
-echo "npm install && bower install"
-npm install --production
+echo "npm install"
+npm install
+
+echo "bower install"
 bower install -f --allow-root
 
 export NODE_ENV=prodeuction
