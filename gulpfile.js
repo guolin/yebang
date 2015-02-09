@@ -108,7 +108,7 @@ gulp.task('dist-copy', function(){
 
     del('src/dist', function(){
 
-        gulp.src(['src/js/**/*.js','!src/js/controllers/*.js'])
+        gulp.src(['src/js/**/*.js','!src/js/controllers/*.js','!src/js/lib/*.js'])
             .pipe(plugins.uglify())
             .pipe(plugins.concat('app.min.js'))
             .pipe(gulp.dest('src/dist/js/'));
@@ -147,15 +147,13 @@ gulp.task('watch', function () {
 });
 
 gulp.task("watch-cid", function(){
-    gulp.watch("src/cid", ['less','dist-copy']).on("change", connect.reload);
+    gulp.watch("src/cid", ['less']).on("change", connect.reload);
 });
 
 var defaultTasks = ['jshint', 'less','inject', 'server', 'watch'];
-var distTasks = ['less','dist-copy', 'server',"watch-cid"];
-var buildTasks = ['jshint', 'less','dist-copy',];
+var distTasks = ['less','dist-copy', 'server','watch-cid'];
+var buildTasks = ['jshint', 'less','dist-copy'];
 
 gulp.task('default', defaultTasks);
 gulp.task('dist', distTasks);
 gulp.task('build', buildTasks);
-
-
